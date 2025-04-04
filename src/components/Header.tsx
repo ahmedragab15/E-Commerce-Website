@@ -5,7 +5,7 @@ import Images from "./Images";
 
 const Header = () => {
   return (
-    <header className="bg-orange-400 h-32 px-8 flex flex-col justify-evenly">
+    <header className="bg-orange-400 h-32 px-8 flex flex-col justify-evenly relative z-50">
       <div className="top-nav flex justify-between items-center">
         <span>Selle easily on our store</span>
         <nav>
