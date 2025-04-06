@@ -2,6 +2,8 @@
 import Logo from "./../assets/images/logo.png";
 import GooglePlay from "./../assets/images/google-play.png";
 import AppStore from "./../assets/images/app-store.png";
+import notFound from "./../assets/images/404.svg";
+
 import aboutImgsHero1 from "./../assets/images/about-page/1.png";
 import aboutImgsHero2 from "./../assets/images/about-page/2.png";
 import aboutImgsHero3 from "./../assets/images/about-page/3.png";
@@ -23,6 +25,7 @@ const Images = {
   logo: Logo,
   GP: GooglePlay,
   AS: AppStore,
+  nF: notFound,
   aboutImgs: {
     h1: aboutImgsHero1,
     h2: aboutImgsHero2,

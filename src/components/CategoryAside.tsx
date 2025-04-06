@@ -6,15 +6,17 @@ import { ProductList } from "../data";
 
 
 const renderCategories = [...new Set(ProductList.map((product) => product.category))].map((category) => (
-  <li key={category} className="capitalize font-medium">
-    <Link className="hover:text-orange-400" to="shop">{category}</Link>
+  <li key={category} className="capitalize font-medium hover:-translate-y-1 duration-300">
+    <Link className="hover:text-orange-400 " to="shop">
+      {category}
+    </Link>
   </li>
 ));
 
 const CategoryAside = () => {
   return (
     <aside className="bg-gray-100">
-      <ul className=" flex flex-col gap-8 py-6 px-8">
+      <ul className=" flex lg:flex-col gap-8 py-6 px-8 flex-wrap">
         {renderCategories}
       </ul>
     </aside>

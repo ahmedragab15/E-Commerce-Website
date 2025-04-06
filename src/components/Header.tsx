@@ -11,22 +11,22 @@ const Header = () => {
         <nav className="hidden lg:block">
           <ul className="flex space-x-10">
             <li>
-              <NavLink className="hover:text-white" to="/">
+              <NavLink className="font-medium hover:text-white" to="/">
                 Home
               </NavLink>
             </li>
             <li>
-              <NavLink className="hover:text-white" to="/market-store">
+              <NavLink className="font-medium hover:text-white" to="/market-store">
                 Market Store
               </NavLink>
             </li>
             <li>
-              <NavLink className="hover:text-white" to="/about-us">
+              <NavLink className="font-medium hover:text-white" to="/about-us">
                 About Us
               </NavLink>
             </li>
             <li>
-              <NavLink className="hover:text-white" to="/contact">
+              <NavLink className="font-medium hover:text-white" to="/contact">
                 Contact
               </NavLink>
             </li>
@@ -46,15 +46,15 @@ const Header = () => {
         </div>
         <div className="nav-search flex flex-col lg:flex-row gap-2 lg:flex-1/3 order-2 lg:order-1 ">
           <div className="search-box bg-white flex items-center p-3 space-x-5 rounded-md  w-full">
-            <Search className="border-none outline-none cursor-pointer" size={30} />
-            <input type="text" className="border-none outline-none w-full" placeholder="Look for anything you want" />
+            <Search className="border-none outline-none cursor-pointer hover:scale-110 duration-200" size={30} />
+            <input type="text" className="border-none outline-none w-full h-full" placeholder="Look for anything you want" />
           </div>
-          <SquiredButton className="rounded-md bg-white border-none outline-none py-3 px-10 w-fit mx-auto text-md font-semibold ">Search </SquiredButton>
+          <SquiredButton className="rounded-md bg-white hover:bg-gray-100 border-none outline-none py-3 px-10 w-fit mx-auto text-md font-semibold ">Search </SquiredButton>
         </div>
         <div className="nav-icons flex text-white space-x-3 self-center order-1 lg:flex-1/12 lg:justify-end mb-2 lg:mb-0">
-          <CircleHelp size={33} className="cursor-pointer" />
-          <ShoppingCart size={33} className="cursor-pointer" />
-          <Heart size={33} className="cursor-pointer" />
+          <CircleHelp size={33} className="cursor-pointer hover:scale-110 duration-200" />
+          <ShoppingCart size={33} className="cursor-pointer hover:scale-110 duration-200" />
+          <Heart size={33} className="cursor-pointer hover:scale-110 duration-200" />
         </div>
       </div>
     </header>
