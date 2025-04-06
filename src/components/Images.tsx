@@ -16,6 +16,9 @@ import aboutImgsService6 from "./../assets/images/about-page/s6.png";
 
 import contactImg from "./../assets/images/contact-page/1.png"
 
+import homeImg1 from "./../assets/images/home-page/1.png"
+import homeImg2 from "./../assets/images/home-page/deal.png"
+
 const Images = {
   logo: Logo,
   GP: GooglePlay,
@@ -35,6 +38,10 @@ const Images = {
   },
   contactImgs: {
     c1: contactImg,
+  },
+  homeImgs: {
+    h1: homeImg1,
+    h2: homeImg2,
   },
 };
 
