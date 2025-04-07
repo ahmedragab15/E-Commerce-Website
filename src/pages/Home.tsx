@@ -1,13 +1,11 @@
 import { SwiperSlide } from "swiper/react";
 import CategoryAside from "../components/CategoryAside";
-import Footer from "../components/Footer";
 import Images from "../components/Images";
 import Pagination from "../components/UI/Pagination";
 import ProductCard from "../components/ProductCard";
 import ProductsContainer from "../components/ProductsContainer";
 import  {SliderRight, SliderLeft } from "../components/swiper/Slider";
 import { ProductList } from "../data";
-import Header from "./../components/Header";
 
 //*  Render     */
 const renderProducts = ProductList.map((product) => (
@@ -25,7 +23,6 @@ const renderProducts2 = ProductList.map((product) => (
 const Home = () => {
   return (
     <>
-      <Header />
       <main>
         <section className="hero grid lg:grid-cols-5 p-8 gap-4">
           <CategoryAside />
@@ -77,8 +74,6 @@ const Home = () => {
         </ProductsContainer>
         <Pagination />
       </main>
-
-      <Footer />
     </>
   );
 };

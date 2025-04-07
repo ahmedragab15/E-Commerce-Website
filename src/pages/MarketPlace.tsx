@@ -1,7 +1,5 @@
 import { SwiperSlide } from "swiper/react";
 import Banner from "../components/Banner";
-import Footer from "../components/Footer";
-import Header from "../components/Header";
 import { ProductList } from "../data";
 import ProductCard from "../components/ProductCard";
 import { SliderLeft, SliderRight } from "../components/swiper/Slider";
@@ -16,7 +14,6 @@ const MarketPlace = () => {
 
   return (
     <>
-      <Header />
       <main className="py-10">
         <div className="container mx-auto">
           <Banner>Visit Shop</Banner>
@@ -39,7 +36,6 @@ const MarketPlace = () => {
           <SliderRight>{renderProducts.slice(16)}</SliderRight>
         </div>
       </main>
-      <Footer />
     </>
   );
 };

@@ -1,11 +1,8 @@
 import { Link } from "react-router-dom";
-import Footer from "../components/Footer";
-import Header from "./../components/Header";
 import Images from "../components/Images";
 const NotFound = () => {
   return (
     <>
-      <Header />
       <main className="flex justify-evenly items-center py-20">
         <div className="title">
           <h1 className="text-4xl font-bold">404 - Page Not Found</h1>
@@ -18,7 +15,6 @@ const NotFound = () => {
           <img className="w-lg max-w-full" src={Images.nF} alt="not found image" />
         </div>
       </main>
-      <Footer />
     </>
   );
 };

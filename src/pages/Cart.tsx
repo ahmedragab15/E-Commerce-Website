@@ -1,12 +1,10 @@
 import { Heart, Trash2 } from "lucide-react";
-import Footer from "../components/Footer";
-import Header from "../components/Header";
 import Images from "../components/Images";
 
 const Cart = () => {
   return (
     <>
-      <Header />
+
       <main className="container mx-auto py-10 space-y-10">
         <div className="space-y-2 px-4">
           <h3 className="text-2xl font-medium ">
@@ -93,7 +91,6 @@ const Cart = () => {
           </div>
         </section>
       </main>
-      <Footer />
     </>
   );
 };

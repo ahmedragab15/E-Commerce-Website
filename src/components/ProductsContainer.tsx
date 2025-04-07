@@ -10,7 +10,7 @@ interface Iprops {
 const ProductsContainer = ({ children, containerTitle, productsBGColor = "bg-white", classname }: Iprops) => {
   return (
     <>
-      <div className="container mx-auto flex justify-between">
+      <div className="container mx-auto flex justify-between px-4">
         <h3 className=" text-lg font-medium">{containerTitle}</h3>
         <Link to="shop">
           <h3 className="text-lg font-medium">See more</h3>

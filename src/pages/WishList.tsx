@@ -1,8 +1,6 @@
 // interface Iprops {
 
 import { Trash2 } from "lucide-react";
-import Footer from "../components/Footer";
-import Header from "../components/Header";
 import Images from "../components/Images";
 
 // }
@@ -10,7 +8,6 @@ import Images from "../components/Images";
 const WishList = () => {
   return (
     <>
-      <Header />
       <main className="py-10">
         <h2 className="text-3xl font-medium text-orange-400 text-center mb-8">My Wishlist</h2>
         <div className="container mx-auto flex md:flex-col gap-8">
@@ -63,7 +60,6 @@ const WishList = () => {
           </div>
         </div>
       </main>
-      <Footer />
     </>
   );
 };

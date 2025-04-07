@@ -1,6 +1,4 @@
 import { PhoneCall, MessagesSquare } from "lucide-react";
-import Footer from "../components/Footer";
-import Header from "../components/Header";
 import Images from "../components/Images";
 import { SquiredButton } from "../components/UI/Button";
 import Input from "../components/UI/Input";
@@ -8,7 +6,6 @@ import Input from "../components/UI/Input";
 const Contact = () => {
   return (
     <>
-      <Header />
       <main>
         <section className="heading h-96 absolute top-24 lg:top-1 left-0 right-0 flex flex-col justify-center items-center gap-3" style={{ background: `url(${Images.contactImgs.c1}) no-repeat center / cover` }}>
           <h1 className="text-3xl md:text-5xl text-white font-medium mt-6 text-center">Contact Us for any Request</h1>
@@ -59,7 +56,6 @@ const Contact = () => {
           </div>
         </section>
       </main>
-      <Footer />
     </>
   );
 };
