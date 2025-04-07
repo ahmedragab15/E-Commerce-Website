@@ -1,14 +1,17 @@
 import { createBrowserRouter, createRoutesFromElements, Route } from "react-router";
+import RootLayout from "./../pages/Layout";
 import Home from "./../pages/Home";
-import AboutUs from "./../pages/AboutUs";
-import NotFound from "./../pages/NotFound";
 import MarketPlace from "./../pages/MarketPlace";
+import AboutUs from "./../pages/AboutUs";
 import Contact from "./../pages/Contact";
+import NotFound from "./../pages/NotFound";
 import WishList from "./../pages/WishList";
 import Cart from "./../pages/Cart";
 import Checkout from "./../pages/Checkout";
+import Login from "../pages/Login";
 
-import RootLayout from "./../pages/Layout";
+
+
 const Routes = createBrowserRouter(
   createRoutesFromElements(
     <>
@@ -17,10 +20,11 @@ const Routes = createBrowserRouter(
         <Route path="market-store" element={<MarketPlace />} />
         <Route path="about-us" element={<AboutUs />} />
         <Route path="contact" element={<Contact />} />
-        <Route path="cart" element={<Cart />} />
-        <Route path="wishList" element={<WishList />} />
-        <Route path="checkout" element={<Checkout />} />
         <Route path="*" element={<NotFound />} />
+        <Route path="wishList" element={<WishList />} />
+        <Route path="cart" element={<Cart />} />
+        <Route path="login" element={<Login />} />
+        <Route path="checkout" element={<Checkout />} />
       </Route>
     </>
   )

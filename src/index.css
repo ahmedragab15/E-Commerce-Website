@@ -1,1 +1,72 @@
 @import "tailwindcss";
+
+a.active {
+    color: #fff;
+}
+
+
+.toggle {
+    width: 200%;
+}
+
+.containerr.active .sign-in {
+    transform: translateX(100%);
+}
+
+.containerr.active .sign-up {
+    transform: translateX(100%);
+    opacity: 1;
+    z-index: 40;
+    animation: move 0.4s;
+}
+
+@keyframes move {
+    0%,
+    49% {
+        opacity: 0;
+        z-index: 1;
+    }
+
+    50%,
+    100% {
+        opacity: 1;
+        z-index: 40;
+    }
+}
+
+.containerr.active .toggle-container {
+    transform: translateX(-100%);
+}
+
+.containerr.active .toggle {
+    transform: translateX(50%);
+}
+
+.toggle-left {
+    transform: translateX(-200%);
+}
+
+.containerr.active .toggle-left {
+    transform: translateX(0);
+}
+
+.containerr.active .toggle-right {
+    transform: translateX(200%);
+}
+
+input[type=radio]:checked + label>img{
+    border: solid #FF8A00 3px;
+    border-radius: 20px;
+    animation: wiggle 0.5s ease-in-out ;
+}
+
+  @keyframes wiggle {
+    0%,
+    100% {
+      transform: rotate(-1deg) scale(1);
+    }
+    50% {
+
+      transform: rotate(1deg) scale(1.05);
+    }
+  }

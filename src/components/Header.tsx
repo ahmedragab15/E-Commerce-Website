@@ -33,8 +33,12 @@ const Header = () => {
           </ul>
         </nav>
         <div className="register-btns space-x-2 hidden lg:block">
-          <RoundedButton className=" text-orange-500 bg-white border-white hover:bg-transparent hover:text-white">Sign Up</RoundedButton>
-          <RoundedButton className=" text-white hover:bg-white hover:text-orange-500 ">Login</RoundedButton>
+          <Link to="login">
+            <RoundedButton className=" text-orange-500 bg-white border-white hover:bg-transparent hover:text-white">Sign Up</RoundedButton>
+          </Link>
+          <Link to="/login">
+            <RoundedButton className=" text-white hover:bg-white hover:text-orange-500 ">Login</RoundedButton>
+          </Link>
         </div>
       </div>
       <div className="bottom-nav flex justify-between lg:items-center flex-col lg:flex-row space-y-2">

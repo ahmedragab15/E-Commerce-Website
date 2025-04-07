@@ -21,6 +21,11 @@ import contactImg from "./../assets/images/contact-page/1.png"
 import homeImg1 from "./../assets/images/home-page/1.png"
 import homeImg2 from "./../assets/images/home-page/deal.png"
 
+import checkoutImg1 from "./../assets/images/checkout-page/visa.jpg"
+import checkoutImg2 from "./../assets/images/checkout-page/master-card.jpg"
+import checkoutImg3 from "./../assets/images/checkout-page/paypal.jpg"
+import checkoutImg4 from "./../assets/images/checkout-page/american-express.jpg"
+
 const Images = {
   logo: Logo,
   GP: GooglePlay,
@@ -45,6 +50,12 @@ const Images = {
   homeImgs: {
     h1: homeImg1,
     h2: homeImg2,
+  },
+  checkoutImgs: {
+    h1: checkoutImg1,
+    h2: checkoutImg2,
+    h3: checkoutImg3,
+    h4: checkoutImg4,
   },
 };
 
