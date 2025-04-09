@@ -1,9 +1,5 @@
-// interface Iprops {
-
 import { Link } from "react-router-dom";
 import { ProductList } from "../data";
-
-
 
 const renderCategories = [...new Set(ProductList.map((product) => product.category))].map((category) => (
   <li key={category} className="capitalize font-medium hover:-translate-y-1 duration-300">
