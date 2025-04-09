@@ -4,13 +4,13 @@ import { useState } from "react";
 function Login() {
     const [isActive, setIsActive] = useState("");
     return (
-        <main className="py-30 w-full bg-stone-50 flex flex-col justify-center items-center ">
+        <main className="py-30 w-full bg-stone-100 flex flex-col justify-center items-center ">
             <div className={`containerr ${isActive} bg-white rounded-4xl shadow-lg relative w-4xl max-w-full min-h-[580px] overflow-hidden`} id="container">
                 <div className="form-container sign-up absolute top-0 left-0 w-1/2 opacity-0 z-10 h-full duration-500 ease-in-out">
                     <form className="bg-white flex flex-col justify-center items-center px-10 h-full">
                         <h1 className="text-2xl font-semibold mb-2">Create Account</h1>
                         <input className="bg-zinc-100 border-0 my-2 py-2.5 px-3.5 text-sm rounded-lg w-full outline-0" type="text" placeholder="Username" />
-                        <input className="bg-zinc-100 border-0 my-2 py-2.5 px-3.5 text-sm rounded-lg w-full outline-0" type="email" placeholder="E-mail" />
+                        <input className="bg-zinc-100 border-0 my-2 py-2.5 px-3.5 text-sm rounded-lg w-full outline-0" type="email" placeholder="Email" />
                         <input className="bg-zinc-100 border-0 my-2 py-2.5 px-3.5 text-sm rounded-lg w-full outline-0" type="password" placeholder="Password" />
                         <button className="bg-orange-400 text-white text-sm py-2.5 px-11 border border-transparent rounded-lg font-semibold uppercase mt-2.5 cursor-pointer hover:bg-orange-500">Sign Up</button>
                         <p className="text-sm font-medium  leading-5 my-5">or sign up with</p>
@@ -25,7 +25,7 @@ function Login() {
                 <div className="form-container sign-in absolute top-0 left-0 w-1/2 z-20 h-full duration-500 ease-in-out ">
                     <form className="bg-white flex flex-col justify-center items-center px-10 h-full">
                         <h1 className="text-2xl font-semibold mb-2">Sign In</h1>
-                        <input className="bg-zinc-100 border-0 my-2 py-2.5 px-3.5 text-sm rounded-lg w-full outline-0" type="email" placeholder="E-mail" />
+                        <input className="bg-zinc-100 border-0 my-2 py-2.5 px-3.5 text-sm rounded-lg w-full outline-0" type="email" placeholder="Email" />
                         <input className="bg-zinc-100 border-0 my-2 py-2.5 px-3.5 text-sm rounded-lg w-full outline-0" type="password" placeholder="Password" />
                         <a className="text-zinc-800 text-sm no-underline mt-3.5 mb-2.5" href="#">
                             Forget Password?

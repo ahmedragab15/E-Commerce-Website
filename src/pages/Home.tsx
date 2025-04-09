@@ -7,7 +7,7 @@ import ProductsContainer from "../components/ProductsContainer";
 import  {SliderRight, SliderLeft } from "../components/swiper/Slider";
 import { ProductList } from "../data";
 
-//*  Render     */
+//*  Render   */
 const renderProducts = ProductList.map((product) => (
   <SwiperSlide>
     <ProductCard key={product.id} title={product.title} imgURL={product.image} category={product.category} price={product.price} discountPercentage={product.discountPercentage} />
