@@ -27,8 +27,6 @@ export const SliderRight = ({ children }: { children: React.ReactNode }) => {
         disableOnInteraction: false,
         pauseOnMouseEnter: true,
       }}
-      onSwiper={(swiper) => console.log(swiper)}
-      onSlideChange={() => console.log("slide change")}
       breakpoints={{
         640: {
           slidesPerView: 2,
@@ -68,8 +66,6 @@ export const SliderLeft = ({ children }: { children: React.ReactNode }) => {
         pauseOnMouseEnter: true,
         reverseDirection: true,
       }}
-      onSwiper={(swiper) => console.log(swiper)}
-      onSlideChange={() => console.log("slide change")}
       breakpoints={{
         640: {
           slidesPerView: 2,
