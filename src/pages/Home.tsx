@@ -34,17 +34,11 @@ const Home = () => {
             <div className="main img-box">
               <img src={Images.homeImgs.h1} className="max-w-full h-auto object-fit" alt="hero image" />
             </div>
-            <div className="mini img-box flex justify-evenly mt-4 gap-4">
-              <img src={Images.homeImgs.h2} className="bg-gray-500 h-[85px] w-[190px] object-fit" alt="hero image" />
-              <img src={Images.homeImgs.h2} className="bg-gray-500 h-[85px] w-[190px] object-fit" alt="hero image" />
-              <img src={Images.homeImgs.h2} className="bg-gray-500 h-[85px] w-[190px] object-fit" alt="hero image" />
-            </div>
           </div>
           <div className="right">
             <div className="img-box flex lg:flex-col gap-4 flex-wrap">
-              <img src={Images.homeImgs.h2} className="bg-gray-100 max-w-58 h-58 object-fit" alt="hero image" />
-              <img src={Images.homeImgs.h2} className="bg-gray-100 max-w-58 h-58 object-fit" alt="hero image" />
-              <img src={Images.homeImgs.h2} className="bg-gray-100 max-w-58 h-58 object-fit" alt="hero image" />
+              <span className="bg-gray-100 text-gray-500 text-2xl max-w-58 h-58 object-fit flex justify-center items-center">230 X 230</span>
+              <span className="bg-gray-100 text-gray-500 text-2xl max-w-58 h-58 object-fit flex justify-center items-center">230 X 230</span> <span className="bg-gray-100 text-gray-500 text-2xl max-w-58 h-58 object-fit flex justify-center items-center">230 X 230</span>
             </div>
           </div>
         </section>
@@ -54,7 +48,7 @@ const Home = () => {
         <ProductsContainer containerTitle="Daily Deal" productsBGColor="bg-gray-100">
           <SliderLeft>{renderProducts2.slice(26)}</SliderLeft>
         </ProductsContainer>
-        <img src={Images.homeImgs.h2} className="Banner w-11/12 mx-auto object-cover mb-6 h-[200px]" alt="banner" />
+        <span className="Banner w-11/12 h-[200px] mx-auto object-cover mb-6 bg-gray-100 text-gray-500 text-3xl flex justify-center items-center">Banner</span>
         <ProductsContainer containerTitle="Top Shops">
           <SliderRight>{renderProducts.slice(50)}</SliderRight>
         </ProductsContainer>
@@ -63,12 +57,13 @@ const Home = () => {
           <SliderRight>{renderProducts2.slice(35)}</SliderRight>
           <SliderLeft>{renderProducts2.slice(55)}</SliderLeft>
         </ProductsContainer>
-        <img src={Images.homeImgs.h2} className="Banner w-11/12 mx-auto object-cover mb-6 h-[200px]" alt="banner" />
+        <span className="Banner w-11/12 h-[200px] mx-auto object-cover mb-6 bg-gray-100 text-gray-500 text-3xl flex justify-center items-center">Banner</span>
+        <span className="Banner w-11/12 h-[200px] mx-auto object-cover mb-6 bg-gray-100 text-gray-500 text-3xl flex justify-center items-center">Banner</span>
         <ProductsContainer containerTitle="Last Seen" classname="flex-wrap">
           <SliderRight>{renderProducts.slice(4)}</SliderRight>
           <SliderLeft>{renderProducts.slice(55)}</SliderLeft>
         </ProductsContainer>
-        <img src={Images.homeImgs.h2} className="Banner w-11/12 mx-auto object-cover mb-6 h-[200px]" alt="banner" />
+        <span className="Banner w-11/12 h-[200px] mx-auto object-cover mb-6 bg-gray-100 text-gray-500 text-3xl flex justify-center items-center">Banner</span>
         <ProductsContainer containerTitle="Top Checked product">
           <SliderRight>{renderProducts.slice(38)}</SliderRight>
         </ProductsContainer>
