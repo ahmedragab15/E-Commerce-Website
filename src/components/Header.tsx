@@ -6,7 +6,7 @@ import { useState } from "react";
 import PageTransition from "./PageTransition";
 
 const Header = () => {
-  const [openNav, setOpenNav] = useState("-right-full");
+  const [openNav, setOpenNav] = useState(false);
 
   const [isAnimating, setIsAnimating] = useState(false);
 
@@ -22,8 +22,8 @@ const Header = () => {
       <header className="bg-orange-400 lg:py-5 px-8 flex flex-col justify-evenly relative z-[1000] space-y-3">
         <div className="top-nav flex justify-between items-center py-1 lg:py-0 relative">
           <span className="hidden lg:block">Selle easily on our store</span>
-          <nav className={`fixed lg:static z-50 top-0 ${openNav} bottom-0 w-2/4 duration-500 lg:w-auto bg-orange-500 p-5 lg:p-0 lg:bg-transparent flex items-center justify-center`}>
-            <span className="closeSideNav absolute top-3 left-3 text-2xl cursor-pointer hover:text-white lg:hidden" onClick={() => setOpenNav("-right-full")}>
+          <nav className={`fixed lg:static z-50 top-0 ${openNav ? "right-0" : "-right-full"} bottom-0 w-2/4 duration-500 lg:w-auto bg-orange-500 p-5 lg:p-0 lg:bg-transparent flex items-center justify-center`}>
+            <span className="closeSideNav absolute top-3 left-3 text-2xl cursor-pointer hover:text-white lg:hidden" onClick={() => setOpenNav(false)}>
               X
             </span>
             <ul className="block lg:flex space-y-8 lg:space-y-0 lg:space-x-10">
@@ -32,7 +32,7 @@ const Header = () => {
                   className="font-medium hover:text-white"
                   to="/"
                   onClick={() => {
-                    setOpenNav("-right-full");
+                    setOpenNav(false);
                     transitionHandler();
                   }}
                 >
@@ -44,7 +44,7 @@ const Header = () => {
                   className="font-medium hover:text-white"
                   to="/market-store"
                   onClick={() => {
-                    setOpenNav("-right-full");
+                    setOpenNav(false);
                     transitionHandler();
                   }}
                 >
@@ -56,7 +56,7 @@ const Header = () => {
                   className="font-medium hover:text-white"
                   to="/about-us"
                   onClick={() => {
-                    setOpenNav("-right-full");
+                    setOpenNav(false);
                     transitionHandler();
                   }}
                 >
@@ -68,7 +68,7 @@ const Header = () => {
                   className="font-medium hover:text-white"
                   to="/contact"
                   onClick={() => {
-                    setOpenNav("-right-full");
+                    setOpenNav(false);
                     transitionHandler();
                   }}
                 >
@@ -81,7 +81,7 @@ const Header = () => {
             <Link
               to="login"
               onClick={() => {
-                setOpenNav("-right-full");
+                setOpenNav(true);
                 transitionHandler();
               }}
             >
@@ -90,7 +90,7 @@ const Header = () => {
             <Link
               to="/login"
               onClick={() => {
-                setOpenNav("-right-full");
+                setOpenNav(true);
                 transitionHandler();
               }}
             >
@@ -100,10 +100,16 @@ const Header = () => {
         </div>
         <div className="bottom-nav flex justify-between lg:items-center flex-col lg:flex-row space-y-2">
           <div className="flex items-center justify-between lg:flex-1/12">
-            <Link to="/">
+            <Link
+              to="/"
+              onClick={() => {
+                setOpenNav(false);
+                transitionHandler();
+              }}
+            >
               <img className="w-12" src={Images.logo} alt="Logo" />
             </Link>
-            <Menu className="text-white lg:hidden cursor-pointer" size={30} onClick={() => setOpenNav("-right-0")} />
+            <Menu className="text-white lg:hidden cursor-pointer" size={30} onClick={() => setOpenNav(true)} />
           </div>
           <div className="nav-search flex flex-row gap-2 lg:flex-1/3 order-2 lg:order-1 ">
             <div className="search-box bg-white flex items-center p-3 space-x-5 rounded-md  w-full">

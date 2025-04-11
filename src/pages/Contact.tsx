@@ -7,14 +7,14 @@ const Contact = () => {
   return (
     <>
       <main>
-        <section className="heading h-96 absolute top-24 lg:top-1 left-0 right-0 flex flex-col justify-center items-center gap-3" style={{ background: `url(${Images.contactImgs.c1}) no-repeat center / cover` }}>
+        <section className="heading h-96 absolute top-11 lg:top-2 left-0 right-0 flex flex-col justify-center items-center gap-3" style={{ background: `url(${Images.contactImgs.c1}) no-repeat center / cover` }}>
           <h1 className="text-3xl md:text-5xl text-white font-medium mt-6 text-center">Contact Us for any Request</h1>
           <p className="max-w-xl md:max-w-3xl text-sm md:text-base leading-tight text-balance text-center text-white">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Consectetur amet, mollis cras felis vestibulum integer nec vel commodo. Ultrices a sapien faucibus augue.</p>
         </section>
-        <section className="contact-box h-[1300px] sm:h-[1100px] lg:h-[900px] relative z-10 grid place-content-center">
+        <section className="contact-box h-[1300px] sm:h-[1100px] lg:h-[850px] relative z-10 grid place-content-center">
           <div className="container mx-auto lg:max-w-11/12 relative top-6 p-8 bg-neutral-100 shadow-2xl grid grid-cols-1 lg:grid-cols-4 justify-center gap-6 rounded-lg">
             <div className="left gap-3 flex flex-col sm:flex-row lg:flex-col justify-between mx-auto sm:mx-0 lg:justify-start">
-              <div className="box md:min-h-52 flex flex-col justify-evenly items-center bg-white px-6 shadow-2xl rounded-md">
+              <div className="box md:min-h-52 flex flex-col justify-evenly items-center bg-white px-6 py-2 shadow-2xl rounded-md">
                 <div className="top flex flex-col md:flex-row items-center gap-2">
                   <PhoneCall className="border-2 rounded-full p-2 text-orange-400" size={50} />
                   <div>

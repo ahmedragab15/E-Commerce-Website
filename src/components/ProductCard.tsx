@@ -36,8 +36,8 @@ const ProductCard = ({ imgURL, title, category, price, discountPercentage, image
           <span className="category text-sm text-gray-500">{category}</span>
           <div className="flex justify-between items-center">
             <div className="price-discount leading-0">
-              <span className="price text-lg block font-medium">$ {price}</span>
-              <span className="discount text-sm font-medium text-gray-400 line-through">$ {(+price * (+discountPercentage / 100) + price).toFixed(1)}</span>
+              <span className="price text-lg block font-medium">$ {price.toFixed(2)}</span>
+              <span className="discount text-sm font-medium text-gray-400 line-through">$ {(+price * (+discountPercentage / 100) + price).toFixed(2)}</span>
               <span className="discount-percent text-sm font-medium text-orange-400 ml-2">-{discountPercentage}%</span>
             </div>
             <CartButton />
