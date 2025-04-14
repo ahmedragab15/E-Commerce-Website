@@ -8,7 +8,7 @@ const MarketPlace = () => {
   //*  Render     */
   const renderProducts = ProductList.map((product) => (
     <SwiperSlide>
-      <ProductCard key={product.id} title={product.title} imgURL={product.image} category={product.category} price={product.price} discountPercentage={product.discountPercentage} />
+      <ProductCard id={product.id} key={product.id} title={product.title} imgURL={product.image} category={product.category} price={product.price} discountPercentage={product.discountPercentage} rating={product.rating} />
     </SwiperSlide>
   ));
 

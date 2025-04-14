@@ -9,6 +9,7 @@ import WishList from "./../pages/WishList";
 import Cart from "./../pages/Cart";
 import Checkout from "./../pages/Checkout";
 import Login from "../pages/Login";
+import Shop from "../pages/Shop";
 
 
 
@@ -20,6 +21,7 @@ const Routes = createBrowserRouter(
         <Route path="market-store" element={<MarketPlace />} />
         <Route path="about-us" element={<AboutUs />} />
         <Route path="contact" element={<Contact />} />
+        <Route path="shop" element={<Shop />} />
         <Route path="*" element={<NotFound />} />
         <Route path="wishList" element={<WishList />} />
         <Route path="cart" element={<Cart />} />

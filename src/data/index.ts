@@ -9,7 +9,7 @@ export const ProductList: IProduct[] = [
     price: 9.99,
     discountPercentage: 7.17,
     rating: {
-      stars: 4.5,
+      stars: 5,
       count: 120,
     },
     tags: ["beauty", "mascara"],
