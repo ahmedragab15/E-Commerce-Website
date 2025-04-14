@@ -1,19 +1,18 @@
-import { createBrowserRouter, createRoutesFromElements, Route } from "react-router";
-import RootLayout from "./../pages/Layout";
-import Home from "./../pages/Home";
-import MarketPlace from "./../pages/MarketPlace";
-import AboutUs from "./../pages/AboutUs";
-import Contact from "./../pages/Contact";
-import NotFound from "./../pages/NotFound";
-import WishList from "./../pages/WishList";
-import Cart from "./../pages/Cart";
-import Checkout from "./../pages/Checkout";
+import { createBrowserRouter, createRoutesFromElements, Route } from "react-router-dom";
+
+import RootLayout from "../pages/Layout";
+import Home from "../pages/Home";
+import MarketPlace from "../pages/MarketPlace";
+import AboutUs from "../pages/AboutUs";
+import Contact from "../pages/Contact";
+import NotFound from "../pages/NotFound";
+import WishList from "../pages/WishList";
+import Cart from "../pages/Cart";
+import Checkout from "../pages/Checkout";
 import Login from "../pages/Login";
 import Shop from "../pages/Shop";
 
-
-
-const Routes = createBrowserRouter(
+const router = createBrowserRouter(
   createRoutesFromElements(
     <>
       <Route path="/" element={<RootLayout />}>
@@ -31,5 +30,4 @@ const Routes = createBrowserRouter(
     </>
   )
 );
-
-export default Routes;
+export default router;

@@ -4,19 +4,19 @@ import Images from "../components/Images";
 import Pagination from "../components/UI/Pagination";
 import ProductCard from "../components/ProductCard";
 import ProductsContainer from "../components/ProductsContainer";
-import  {SliderRight, SliderLeft } from "../components/swiper/Slider";
+import { SliderRight, SliderLeft } from "../components/swiper/Slider";
 import { ProductList } from "../data";
 
 //*  Render   */
 const renderProducts = ProductList.map((product) => (
   <SwiperSlide>
-    <ProductCard id={product.id} key={product.id} title={product.title} imgURL={product.image} category={product.category} price={product.price} discountPercentage={product.discountPercentage} rating={product.rating} />
+    <ProductCard id={product.id} key={product.id} title={product.title} image={product.image} category={product.category} price={product.price} discountPercentage={product.discountPercentage} rating={product.rating} product={product} />
   </SwiperSlide>
 ));
 
 const renderProducts2 = ProductList.map((product) => (
   <SwiperSlide>
-    <ProductCard id={product.id} key={product.id} title={product.title} imgURL={product.image} category={product.category} price={product.price} discountPercentage={product.discountPercentage} rating={product.rating} imageBGColor="bg-gray-100" productCardBGColor="bg-white" />
+    <ProductCard id={product.id} key={product.id} title={product.title} image={product.image} category={product.category} price={product.price} discountPercentage={product.discountPercentage} rating={product.rating} product={product} imageBGColor="bg-gray-100" productCardBGColor="bg-white" />
   </SwiperSlide>
 ));
 

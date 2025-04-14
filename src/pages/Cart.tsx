@@ -7,9 +7,11 @@ const Cart = () => {
 
       <main className="container mx-auto py-10 space-y-10">
         <div className="space-y-2 px-4">
+
           <h3 className="text-2xl font-medium ">
             <span className="cart-count">3</span> Items in your cart
           </h3>
+
           <p className="max-w-xl">all the items aded into the basket or cart is listed out here! you can add more items or remove the one youre not conortable with</p>
         </div>
         <section className="cart-items">
@@ -22,6 +24,7 @@ const Cart = () => {
             </div>
           </div>
           <div className="list py-6 px-14 sm:px-0 space-y-6">
+
             <div className="product bg-neutral-100 flex flex-col sm:flex-row justify-evenly items-center gap-1 lg:gap-8 border-y border-gray-200 py-2 rounded-xl">
               <img src={Images.homeImgs.h2} className="bg-gray-100 w-44 max-w-11/12 h-auto object-fit rounded-xl" alt="hero image" />
 
@@ -50,6 +53,7 @@ const Cart = () => {
 
               <div className="total-price lg:text-xl font-medium">$ 284.0</div>
             </div>
+
             <div className="product bg-neutral-100 flex flex-col sm:flex-row justify-evenly items-center gap-1 lg:gap-8 border-y border-gray-200 py-2 rounded-xl">
               <img src={Images.homeImgs.h2} className="bg-gray-100 w-44 max-w-11/12 h-auto object-fit rounded-xl" alt="hero image" />
 
@@ -78,11 +82,14 @@ const Cart = () => {
 
               <div className="total-price lg:text-xl font-medium">$ 284.0</div>
             </div>
+
           </div>
           <div className="confirmation text-right border-t border-gray-200 py-6 px-4 space-y-3 mt-16">
+
             <h3 className="text-2xl font-medium">
               Total Amount: <span className="ml-6">$ 1,342.00</span>
             </h3>
+            
             <span className="block text-sm mb-8">Delivery fee is not included</span>
             <div className="btns flex flex-col sm:flex-row items-center gap-4">
               <button className="font-medium inline-block ml-auto text-orange-400 border border-orange-400 hover:bg-orange-400 hover:text-white cursor-pointer py-2 px-8 rounded-sm">Continue Shopping</button>

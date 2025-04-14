@@ -1,27 +1,29 @@
 import { Star } from "lucide-react";
 import { CartButton } from "./UI/Button";
+import toast from "react-hot-toast";
+import { IProduct } from "../interfaces";
+import { useState } from "react";
 
-interface Iprops {
-  id: number;
-  imgURL: string;
-  title: string;
-  category: string;
-  price: number;
-  discountPercentage: number;
+interface Iprops extends IProduct {
+  product: IProduct;
   imageBGColor?: string;
   productCardBGColor?: string;
-  rating: {
-    stars: number;
-    count: number;
-  };
 }
 
-const ProductCard = ({id, imgURL, title, category, price, discountPercentage, imageBGColor = "bg-white", productCardBGColor = "bg-gray-100", rating }: Iprops) => {
+const ProductCard = ({ id, image, title, category, price, discountPercentage, imageBGColor = "bg-white", productCardBGColor = "bg-gray-100", rating, product }: Iprops) => {
+  /* State */
+  const [cartItems, setCartItems] = useState<IProduct[]>([]);
+  const addToCart = (product: IProduct) => {
+    toast.success("Added to cart 🛒");
+    setCartItems((prevItems) => [...prevItems,  product ]);
+  };
+  console.log(cartItems);
+
   return (
     <>
       <div className={`product-card w-2xs drop-shadow-lg ${productCardBGColor} p-4 pb-1 rounded-lg`} key={id}>
         <div className="img-box">
-          <img src={imgURL} className={`${imageBGColor} rounded-lg w-full h-58 object-fit cursor-pointer`} alt={title} />
+          <img src={image} className={`${imageBGColor} rounded-lg w-full h-58 object-fit cursor-pointer`} alt={title} />
         </div>
         <div className="product-details">
           <div className="flex justify-between pt-2 gap-2">
@@ -45,7 +47,7 @@ const ProductCard = ({id, imgURL, title, category, price, discountPercentage, im
               <span className="discount text-sm font-medium text-gray-400 line-through">$ {(+price * (+discountPercentage / 100) + price).toFixed(2)}</span>
               <span className="discount-percent text-sm font-medium text-orange-400 ml-2">-{discountPercentage}%</span>
             </div>
-            <CartButton />
+            <CartButton onClick={() => addToCart(product)} />
           </div>
         </div>
       </div>
