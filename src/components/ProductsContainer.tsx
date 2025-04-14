@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 
 interface Iprops {
-  children: React.ReactNode;
+  children?: React.ReactNode;
   containerTitle?: string;
   productsBGColor?: string;
   classname?: string;
