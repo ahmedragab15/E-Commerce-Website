@@ -2,7 +2,8 @@ import { Star } from "lucide-react";
 import { CartButton } from "./UI/Button";
 import toast from "react-hot-toast";
 import { IProduct } from "../interfaces";
-import { useState } from "react";
+import { useContext } from "react";
+import { CartContext } from "./context/CartContext";
 
 interface Iprops extends IProduct {
   product: IProduct;
@@ -12,12 +13,13 @@ interface Iprops extends IProduct {
 
 const ProductCard = ({ id, image, title, category, price, discountPercentage, imageBGColor = "bg-white", productCardBGColor = "bg-gray-100", rating, product }: Iprops) => {
   /* State */
-  const [cartItems, setCartItems] = useState<IProduct[]>([]);
-  const addToCart = (product: IProduct) => {
-    toast.success("Added to cart 🛒");
-    setCartItems((prevItems) => [...prevItems,  product ]);
+
+  const { addCartItem } = useContext(CartContext);
+
+  const handleAddToCart = () => {
+    addCartItem(product);
+    toast.success("Item added to cart");
   };
-  console.log(cartItems);
 
   return (
     <>
@@ -47,7 +49,7 @@ const ProductCard = ({ id, image, title, category, price, discountPercentage, im
               <span className="discount text-sm font-medium text-gray-400 line-through">$ {(+price * (+discountPercentage / 100) + price).toFixed(2)}</span>
               <span className="discount-percent text-sm font-medium text-orange-400 ml-2">-{discountPercentage}%</span>
             </div>
-            <CartButton onClick={() => addToCart(product)} />
+            <CartButton onClick={handleAddToCart} />
           </div>
         </div>
       </div>

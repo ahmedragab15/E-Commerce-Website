@@ -4,13 +4,14 @@ import { CircleHelp, Heart, Menu, Search, ShoppingCart } from "lucide-react";
 import Images from "./Images";
 import { useState } from "react";
 import PageTransition from "./PageTransition";
-
+import { useContext } from "react";
+import { CartContext } from "./context/CartContext";
 
 const Header = () => {
   const [openNav, setOpenNav] = useState(false);
 
   const [isAnimating, setIsAnimating] = useState(false);
-
+  const { cartItems } = useContext(CartContext);
   const transitionHandler = () => {
     setIsAnimating(!isAnimating);
     setTimeout(() => {
@@ -121,8 +122,13 @@ const Header = () => {
           </div>
           <div className="nav-icons flex text-white space-x-3 self-center order-1 lg:flex-1/12 lg:justify-end mb-2 lg:mb-0">
             <CircleHelp size={33} className="cursor-pointer hover:scale-110 duration-200" />
+            <Link to="/cart" className="relative"> 
             <ShoppingCart size={33} className="cursor-pointer hover:scale-110 duration-200" />
-            <Heart size={33} className="cursor-pointer hover:scale-110 duration-200" />
+              <span className="cart-count absolute top-0 right-0 bg-red-500 rounded-full w-5 h-5 flex justify-center items-center">{cartItems?.length}</span>
+            </Link>
+              <Link to="/wishlist">
+                <Heart size={33} className="cursor-pointer hover:scale-110 duration-200" />
+              </Link>
           </div>
         </div>
       </header>
