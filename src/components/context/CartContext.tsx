@@ -1,20 +1,18 @@
 import { createContext, ReactNode, useEffect, useState } from "react";
+import { IProduct } from "../../interfaces";
 
-interface CartItem {
-    id: number;
-    name: string;
-    price: number;
+interface CartItem extends IProduct {
     quantity: number;
 }
 
-interface CartContextProps {
+interface IProps {
     cartItems: CartItem[];
     addCartItem: (item: CartItem) => void;
     removeCartItem: (item: CartItem) => void;
 }
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
-const CartContext = createContext<CartContextProps | null | any>(null);
+const CartContext = createContext<IProps | any>(null);
 
 const CartProvider = ({ children }: { children: ReactNode }) => {
     const [cartItems, setCartItems] = useState<CartItem[]>([]);
@@ -40,7 +38,7 @@ const CartProvider = ({ children }: { children: ReactNode }) => {
     };
 
     const removeCartItem = (item: CartItem) => {
-        setCartItems((prevItems) => prevItems.filter((i) => i.id !== item.id));
+        setCartItems((prevItems) => prevItems.filter((i) => i.id !== item.id))
     };
 
     return <CartContext.Provider value={{ cartItems, addCartItem, removeCartItem }}>{children}</CartContext.Provider>;

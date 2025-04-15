@@ -1,9 +1,15 @@
 import { Heart, Trash2 } from "lucide-react";
 import { useContext } from "react";
 import { CartContext } from "../components/context/CartContext";
+import toast from "react-hot-toast";
 
 const Cart = () => {
-  const { cartItems } = useContext(CartContext);
+  const { cartItems, removeCartItem } = useContext(CartContext);
+
+  const handleRemoveFromCart = (id: number) => {
+    removeCartItem({ id });
+    toast.success("Item removed from cart");
+  };
   return (
     <>
       <main className="container mx-auto py-10 space-y-10">
@@ -37,7 +43,12 @@ const Cart = () => {
                         <Heart className="cursor-pointer hover:scale-110 duration-200" />
                         Add to wishlist
                       </span>
-                      <button className="text-red-500 font-medium hover:text-red-600 cursor-pointer flex items-center gap-1">
+                      <button
+                        className="text-red-500 font-medium hover:text-red-600 cursor-pointer flex items-center gap-1"
+                        onClick={() => {
+                          handleRemoveFromCart(item.id);
+                        }}
+                      >
                         <Trash2 /> Delete
                       </button>
                     </div>
