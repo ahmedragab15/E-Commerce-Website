@@ -8,7 +8,7 @@ import Images from "../components/Images";
 const WishList = () => {
   return (
     <>
-      <main className="py-10">
+      <main className="py-10 mt-37">
         <h2 className="text-3xl font-medium text-orange-400 text-center mb-8">My Wishlist</h2>
         <div className="container mx-auto flex md:flex-col gap-8">
           <div className="head hidden md:flex flex-col md:flex-row justify-center items-center gap-16">

@@ -1,10 +1,9 @@
 import { Facebook, Github, Linkedin, Twitter } from "lucide-react";
 import { useState } from "react";
-
 function Login() {
     const [isActive, setIsActive] = useState(false);
     return (
-      <main className="py-30 w-full bg-stone-100 flex flex-col justify-center items-center ">
+      <main className="py-30 w-full bg-stone-100 flex flex-col justify-center items-center mt-37">
         <div className={`containerr ${isActive ? "active" : ""}  bg-white rounded-4xl shadow-lg relative w-4xl max-w-full min-h-[580px] overflow-hidden`} id="container">
           <div className="form-container sign-up absolute top-0 left-0 w-1/2 opacity-0 z-10 h-full duration-500 ease-in-out">
             <form className="bg-white flex flex-col justify-center items-center px-10 h-full">

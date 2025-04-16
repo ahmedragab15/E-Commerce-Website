@@ -23,7 +23,7 @@ const renderProducts2 = ProductList.map((product) => (
 const Home = () => {
   return (
     <>
-      <main>
+      <main className="mt-37">
         <section className="hero grid lg:grid-cols-5 p-8 gap-4">
           <CategoryAside />
           <div className="center lg:col-span-3 bg-gray-100 pt-10 pl-6">

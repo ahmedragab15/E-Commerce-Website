@@ -3,7 +3,7 @@ import Images from "../components/Images";
 const NotFound = () => {
   return (
     <>
-      <main className="flex justify-evenly items-center py-20">
+      <main className="flex justify-evenly items-center py-20 mt-37">
         <div className="title">
           <h1 className="text-4xl font-bold">404 - Page Not Found</h1>
           <p className="font-semibold my-4">We couldn’t find the page you are looking for</p>

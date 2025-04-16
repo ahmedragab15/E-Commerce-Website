@@ -12,7 +12,7 @@ const Shop = () => {
 
   ));
   return (
-    <main className="pb-10 mx-4">
+    <main className="pb-10 mx-4 mt-37">
       <span className="Banner w-full h-[200px] my-6 mx-auto object-cover mb-6 bg-gray-100 text-gray-500 text-3xl flex justify-center items-center">Banner</span>
       <div className="container mx-auto flex flex-col sm:flex-row justify-evenly xl:gap-4">
         <div className="flex-1/6">

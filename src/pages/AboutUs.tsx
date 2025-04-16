@@ -4,7 +4,7 @@ const AboutUs = () => {
   return (
     <>
 
-      <main>
+      <main className="mt-37">
         <section className="hero py-16 bg-zinc-50">
           <div className="container mx-auto flex flex-col-reverse justify-between md:flex-row gap-4 py-8 px-6">
             <div className="content flex-1/2 space-y-10">

@@ -1,0 +1,96 @@
+import { ChevronRight, CircleCheckBig, Facebook, Instagram, ShoppingCart, Star, Twitter } from "lucide-react";
+
+const ProductDetails = () => {
+  return (
+    <main className=" mt-37">
+      <section className="hero container mx-auto py-10 px-4 flex gap-4">
+        <div className="product-info bg-gray-100 w-10/12 min-h-[660px] py-5 px-4 flex gap-8">
+          <div className="images space-y-4 w-1/2">
+            <div className="main-img-box">
+              <img src="" alt="" className="main-img w-full h-[480px] bg-white" />
+            </div>
+            <div className="mini-imgs-box flex justify-between">
+              <img src="" alt="" className="mini-imgs w-20 h-20 bg-white" />
+              <img src="" alt="" className="mini-imgs w-20 h-20 bg-white" />
+              <img src="" alt="" className="mini-imgs w-20 h-20 bg-white" />
+              <img src="" alt="" className="mini-imgs w-20 h-20 bg-white" />
+            </div>
+            <div className="share flex justify-between">
+              <h3 className="text-md uppercase font-medium">share products:</h3>
+              <div className="social-media flex gap-3">
+                <Facebook />
+                <Twitter />
+                <Instagram />
+              </div>
+            </div>
+          </div>
+          <div className="info w-1/2 space-y-4 h-full flex flex-col">
+            <h3 className="product-title text-lg font-medium">porduct title</h3>
+            <p className="product-description text-sm text-neutral-600 leading-4">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Harum possimus tempore laboriosam quos, doloremque autem?</p>
+            <div className="product-rate flex gap-1 py-4">
+              <Star size={20} />
+              <Star size={20} />
+              <Star size={20} />
+              <Star size={20} />
+              <Star size={20} />
+            </div>
+            <div className="price-info pt-8 border-t-1 border-gray-300">
+              <strong className="product-price text-2xl">$ 72</strong>
+              <div className="product-discount space-x-4">
+                <span className="before-discount text-gray-600 font-medium line-through">$ 100</span>
+                <span className="discount-percentage text-xs bg-green-100 text-orange-400 font-medium p-0.5">-50%</span>
+              </div>
+            </div>
+            <span className="product-category block my-2 text-neutral-600">Product Category</span>
+            <button className="font-medium w-full flex items-center justify-center text-white border bg-orange-400 hover:bg-orange-500 cursor-pointer py-3 px-8 mt-auto rounded-sm gap-4  text-center">
+              <ShoppingCart /> Add to cart
+            </button>
+          </div>
+        </div>
+        <div className="additionl-info bg-gray-100 w-2/12 min-h-80 py-5 px-4 space-y-8">
+          <div className="delivery-option bg-white pt-4 pb-6 px-2 rounded-md">
+            <h3 className="text-md border-b-1 border-gray-200 pb-2">Delivery</h3>
+            <label className="block py-4" htmlFor="country">
+              Choose your location
+            </label>
+            <select className="border-1 border-gray-200 w-full rounded-md py-1 px-2 mb-2" name="country" id="country">
+              <option value="Egypt">Egypt</option>
+              <option value="Saudi-Arabia">Saudi Arabia</option>
+              <option value="united-emirates">United Emirates</option>
+            </select>
+            <select className="border-1 border-gray-200 w-full rounded-md py-1 px-2" name="city" id="city">
+              <option value="Cairo">Cairo</option>
+              <option value="Alexandria">Alexandria</option>
+            </select>
+          </div>
+          <div className="seller-details bg-white pt-4 pb-6 px-2 rounded-md">
+            <h3 className="text-md border-b-1 border-gray-200 pb-2">Seller Details</h3>
+            <h3 className="seller-name my-2">Seller Name</h3>
+            <span className="seller-score block text-gray-600">100% Seller Score</span>
+            <span className="seller-followers block my-2 text-gray-600">145 followers</span>
+            <h3 className="seller-performance pt-2 pb-4">Seller Performance</h3>
+            <ul className="space-y-2">
+              <li className="flex items-center gap-2 text-xs text-gray-600">
+                <CircleCheckBig fill="green" color="white" size={20} /> Order Fulfillment: Excellent
+              </li>
+              <li className="flex items-center gap-2 text-xs text-gray-600">
+                <CircleCheckBig fill="green" color="white" size={20} /> Quality Score: Excellent
+              </li>
+              <li className="flex items-center gap-2 text-xs text-gray-600">
+                <CircleCheckBig fill="green" color="white" size={20} /> Customer Rating: Excellent
+              </li>
+            </ul>
+          </div>
+          <div className="become-seller bg-orange-50 p-1 px-2 rounded-md">
+            <h3>you want to Sell?</h3>
+            <a className="text-xs text-gray-600 leading-tight flex items-center" href="">
+              Click here to list your products <ChevronRight />
+            </a>
+          </div>
+        </div>
+      </section>
+    </main>
+  );
+};
+
+export default ProductDetails;

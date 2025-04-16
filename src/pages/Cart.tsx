@@ -12,7 +12,7 @@ const Cart = () => {
   };
   return (
     <>
-      <main className="container mx-auto py-10 space-y-10">
+      <main className="container mx-auto py-10 space-y-10 mt-37">
         <section className="cart-items"></section>
         <div className="space-y-2 px-4">
           <h3 className="text-2xl font-medium ">
@@ -33,7 +33,7 @@ const Cart = () => {
           <div className="list py-6 px-14 sm:px-0 space-y-6">
             {cartItems.map((item: { id: number; title: string; image: string; category: string; price: number; quantity: number; total: number }) => (
               <div key={item.id} className="product bg-neutral-100 flex flex-col sm:flex-row justify-evenly items-center gap-1 lg:gap-8 border-y border-gray-200 py-2 rounded-xl">
-                <img src={item.image} className="bg-gray-100 w-44 max-w-11/12 h-auto object-fit rounded-xl" alt="hero image" />
+                <img src={item.image} className="bg-gray-100 w-44 max-w-11/12 h-44 object-center rounded-xl" alt="hero image" />
                 <div className="details flex flex-col sm:gap-20">
                   <h3 className="font-medium">{item.title}</h3>
                   <div className="space-y-2">

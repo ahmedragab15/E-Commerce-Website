@@ -4,7 +4,7 @@ import Images from "../components/Images";
 
 const Checkout = () => {
   return (
-    <main>
+    <main className="mt-37">
       <div className="container mx-auto my-12 py-8 px-10 xl:px-18 bg-neutral-100">
         <Link to="/" className="inline-block underline text-orange-400 font-medium dec hover:text-black py-2">
           &lt; Continue Shopping

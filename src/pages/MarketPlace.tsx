@@ -11,10 +11,9 @@ const MarketPlace = () => {
       <ProductCard id={product.id} key={product.id} title={product.title} image={product.image} category={product.category} price={product.price} discountPercentage={product.discountPercentage} rating={product.rating} product={product} />
     </SwiperSlide>
   ));
-
   return (
     <>
-      <main className="py-10">
+      <main className="py-10 mt-37">
         <div className="container mx-auto">
           <Banner />
           <SliderRight>{renderProducts.slice(40)}</SliderRight>

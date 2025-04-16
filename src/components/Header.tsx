@@ -21,7 +21,7 @@ const Header = () => {
 
   return (
     <>
-      <header className="bg-orange-400 lg:py-5 px-8 flex flex-col justify-evenly relative z-[1000] space-y-3">
+      <header className="fixed top-0 right-0 left-0 bg-orange-400 lg:py-5 px-8 flex flex-col justify-evenly z-[1000] shadow-sm space-y-3">
         <div className="top-nav flex justify-between items-center py-1 lg:py-0 relative">
           <span className="hidden lg:block">Selle easily on our store</span>
           <nav className={`fixed lg:static z-50 top-0 ${openNav ? "right-0" : "-right-full"} bottom-0 w-2/4 duration-500 lg:w-auto bg-orange-500 p-5 lg:p-0 lg:bg-transparent flex items-center justify-center`}>
