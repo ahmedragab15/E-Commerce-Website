@@ -77,3 +77,58 @@ input[type="radio"]:checked + label > img {
 .transition-overlay.active {
   transform: translateY(0vh);
 }
+
+.ham-menu span {
+  height: 5px;
+  width: 100%;
+  background: #fff;
+  border-radius: 25px;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  transition: 0.3s;
+}
+
+.ham-menu.active span {
+  background: #fff;
+}
+
+.ham-menu span:nth-child(1) {
+  top: 25%;
+}
+
+.ham-menu span:nth-child(3) {
+  top: 75%;
+}
+
+.ham-menu.active span:nth-child(1) {
+  top: 50%;
+  transform: translate(-50%, -50%) rotate(45deg);
+}
+
+.ham-menu.active span:nth-child(2) {
+  opacity: 0;
+}
+
+.ham-menu.active span:nth-child(3) {
+  top: 50%;
+  transform: translate(-50%, -50%) rotate(-45deg);
+}
+
+.nav-item.fade{
+  display: block;
+  animation: fade 0.7s ease-in-out forwards;
+}
+
+@keyframes fade {
+  from{
+      transform: translateX(300px) scale(0.3);
+      opacity: 0.3;
+  }
+  to{
+    transform: translateX(0) scale(1);
+          opacity: 1;
+  }
+}
+

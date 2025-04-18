@@ -1,6 +1,6 @@
 import { Link, NavLink } from "react-router-dom";
 import { RoundedButton, SquiredButton } from "./UI/Button";
-import { CircleHelp, Heart, Menu, Search, ShoppingCart } from "lucide-react";
+import { CircleHelp, Heart, Search, ShoppingCart } from "lucide-react";
 import Images from "./Images";
 import { useState } from "react";
 import PageTransition from "./PageTransition";
@@ -24,14 +24,11 @@ const Header = () => {
       <header className="fixed top-0 right-0 left-0 bg-orange-400 lg:py-5 px-8 flex flex-col justify-evenly z-[1000] shadow-sm space-y-3">
         <div className="top-nav flex justify-between items-center py-1 lg:py-0 relative">
           <span className="hidden lg:block">Selle easily on our store</span>
-          <nav className={`fixed lg:static z-50 top-0 ${openNav ? "right-0" : "-right-full"} bottom-0 w-2/4 duration-500 lg:w-auto bg-orange-500 p-5 lg:p-0 lg:bg-transparent flex items-center justify-center`}>
-            <span className="closeSideNav absolute top-3 left-3 text-2xl cursor-pointer hover:text-white lg:hidden" onClick={() => setOpenNav(false)}>
-              X
-            </span>
-            <ul className="block lg:flex space-y-8 lg:space-y-0 lg:space-x-10">
+          <nav className={`fixed lg:static z-50 top-0 ${openNav ? "right-0" : "-right-full"} bottom-0 w-2/4 duration-700 lg:w-auto bg-orange-400 shadow-black shadow-sm lg:shadow-none p-5 lg:p-0 lg:bg-transparent flex items-center justify-center`}>
+            <ul className="nav-items block lg:flex space-y-8 lg:space-y-0 lg:space-x-10">
               <li>
                 <NavLink
-                  className="font-medium hover:text-white"
+                  className={`nav-item text-2xl lg:text-base font-medium hover:text-white ${openNav ? "fade" : ""}`}
                   to="/"
                   onClick={() => {
                     setOpenNav(false);
@@ -43,7 +40,7 @@ const Header = () => {
               </li>
               <li>
                 <NavLink
-                  className="font-medium hover:text-white"
+                  className={`nav-item text-2xl lg:text-base font-medium hover:text-white ${openNav ? "fade" : ""}`}
                   to="/market-store"
                   onClick={() => {
                     setOpenNav(false);
@@ -55,7 +52,7 @@ const Header = () => {
               </li>
               <li>
                 <NavLink
-                  className="font-medium hover:text-white"
+                  className={`nav-item text-2xl lg:text-base font-medium hover:text-white ${openNav ? "fade" : ""}`}
                   to="/shop"
                   onClick={() => {
                     setOpenNav(false);
@@ -67,7 +64,7 @@ const Header = () => {
               </li>
               <li>
                 <NavLink
-                  className="font-medium hover:text-white"
+                  className={`nav-item text-2xl lg:text-base font-medium hover:text-white ${openNav ? "fade" : ""}`}
                   to="/about-us"
                   onClick={() => {
                     setOpenNav(false);
@@ -79,7 +76,7 @@ const Header = () => {
               </li>
               <li>
                 <NavLink
-                  className="font-medium hover:text-white"
+                  className={`nav-item text-2xl lg:text-base font-medium hover:text-white ${openNav ? "fade" : ""}`}
                   to="/contact"
                   onClick={() => {
                     setOpenNav(false);
@@ -123,7 +120,12 @@ const Header = () => {
             >
               <img className="w-12" src={Images.logo} alt="Logo" />
             </Link>
-            <Menu className="text-white lg:hidden cursor-pointer" size={30} onClick={() => setOpenNav(true)} />
+            <div className={`ham-menu h-12 w-10 relative flex lg:hidden cursor-pointer z-50 ${openNav ? "active" : ""}`} onClick={() => setOpenNav(!openNav)}>
+              <span></span>
+              <span></span>
+              <span></span>
+            </div>
+            {/* <Menu className="text-white lg:hidden cursor-pointer z-50" size={30} onClick={() => setOpenNav(!openNav)} /> */}
           </div>
           <div className="nav-search flex flex-row gap-2 lg:flex-1/3 order-2 lg:order-1 ">
             <div className="search-box bg-white flex items-center p-3 space-x-5 rounded-md  w-full">
@@ -134,13 +136,13 @@ const Header = () => {
           </div>
           <div className="nav-icons flex text-white space-x-3 self-center order-1 lg:flex-1/12 lg:justify-end mb-2 lg:mb-0">
             <CircleHelp size={33} className="cursor-pointer hover:scale-110 duration-200" />
-            <Link to="/cart" className="relative"> 
-            <ShoppingCart size={33} className="cursor-pointer hover:scale-110 duration-200" />
+            <Link to="/cart" className="relative">
+              <ShoppingCart size={33} className="cursor-pointer hover:scale-110 duration-200" />
               <span className="cart-count absolute top-0 right-0 bg-red-500 rounded-full pointer-events-none w-5 h-5 flex justify-center items-center">{cartItems?.length}</span>
             </Link>
-              <Link to="/wishlist">
-                <Heart size={33} className="cursor-pointer hover:scale-110 duration-200" />
-              </Link>
+            <Link to="/wishlist">
+              <Heart size={33} className="cursor-pointer hover:scale-110 duration-200" />
+            </Link>
           </div>
         </div>
       </header>
