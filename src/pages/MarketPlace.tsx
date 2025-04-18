@@ -3,6 +3,7 @@ import Banner from "../components/Banner";
 import { ProductList } from "../data";
 import ProductCard from "../components/ProductCard";
 import { SliderLeft, SliderRight } from "../components/swiper/Slider";
+import { Helmet } from "react-helmet";
 
 const MarketPlace = () => {
   //*  Render     */
@@ -13,6 +14,9 @@ const MarketPlace = () => {
   ));
   return (
     <>
+      <Helmet>
+        <title>Market Store | E-commerce Store</title>
+      </Helmet>
       <main className="py-10 mt-37">
         <div className="container mx-auto">
           <Banner />

@@ -2,6 +2,7 @@ import { Heart, Trash2 } from "lucide-react";
 import { useContext } from "react";
 import { CartContext } from "../components/context/CartContext";
 import toast from "react-hot-toast";
+import { Helmet } from "react-helmet";
 
 const Cart = () => {
   const { cartItems, removeCartItem, setCartItems } = useContext(CartContext);
@@ -11,22 +12,25 @@ const Cart = () => {
     toast.success("Item removed from cart");
   };
 
-const handleQuantityChange = (id: number, quantity: number) => {
-  console.log("handleQuantityChange", id, quantity);
-  const existingCartItemIndex = cartItems.findIndex((item: { id: number }) => item.id === id);
-  if (existingCartItemIndex !== -1) {
-    if (quantity <= 0) {
-      removeCartItem({ id });
-    } else {
-      const updatedCartItems = [...cartItems];
-      updatedCartItems[existingCartItemIndex].quantity = quantity;
-      setCartItems(updatedCartItems);
+  const handleQuantityChange = (id: number, quantity: number) => {
+    console.log("handleQuantityChange", id, quantity);
+    const existingCartItemIndex = cartItems.findIndex((item: { id: number }) => item.id === id);
+    if (existingCartItemIndex !== -1) {
+      if (quantity <= 0) {
+        removeCartItem({ id });
+      } else {
+        const updatedCartItems = [...cartItems];
+        updatedCartItems[existingCartItemIndex].quantity = quantity;
+        setCartItems(updatedCartItems);
+      }
     }
-  }
-};
+  };
 
   return (
     <>
+      <Helmet>
+        <title>Cart| E-commerce Store</title>
+      </Helmet>
       <main className="container mx-auto py-10 space-y-10 mt-37">
         <section className="cart-items"></section>
         <div className="space-y-2 px-4">

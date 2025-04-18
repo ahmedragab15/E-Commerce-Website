@@ -136,7 +136,7 @@ const Header = () => {
             <CircleHelp size={33} className="cursor-pointer hover:scale-110 duration-200" />
             <Link to="/cart" className="relative"> 
             <ShoppingCart size={33} className="cursor-pointer hover:scale-110 duration-200" />
-              <span className="cart-count absolute top-0 right-0 bg-red-500 rounded-full w-5 h-5 flex justify-center items-center">{cartItems?.length}</span>
+              <span className="cart-count absolute top-0 right-0 bg-red-500 rounded-full pointer-events-none w-5 h-5 flex justify-center items-center">{cartItems?.length}</span>
             </Link>
               <Link to="/wishlist">
                 <Heart size={33} className="cursor-pointer hover:scale-110 duration-200" />

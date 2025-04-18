@@ -1,9 +1,12 @@
+import { Helmet } from "react-helmet";
 import Images from "../components/Images";
 
 const AboutUs = () => {
   return (
     <>
-
+      <Helmet>
+        <title>About Us | E-commerce Store</title>
+      </Helmet>
       <main className="mt-37">
         <section className="hero py-16 bg-zinc-50">
           <div className="container mx-auto flex flex-col-reverse justify-between md:flex-row gap-4 py-8 px-6">

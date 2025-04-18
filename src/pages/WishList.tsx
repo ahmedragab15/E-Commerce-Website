@@ -2,12 +2,16 @@
 
 import { Trash2 } from "lucide-react";
 import Images from "../components/Images";
+import { Helmet } from "react-helmet";
 
 // }
 
 const WishList = () => {
   return (
     <>
+      <Helmet>
+        <title>WishList | E-commerce Store</title>
+      </Helmet>
       <main className="py-10 mt-37">
         <h2 className="text-3xl font-medium text-orange-400 text-center mb-8">My Wishlist</h2>
         <div className="container mx-auto flex md:flex-col gap-8">

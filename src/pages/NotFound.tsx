@@ -1,8 +1,12 @@
 import { Link } from "react-router-dom";
 import Images from "../components/Images";
+import { Helmet } from "react-helmet";
 const NotFound = () => {
   return (
     <>
+      <Helmet>
+        <title>Not Found | E-commerce Store</title>
+      </Helmet>
       <main className="flex justify-evenly items-center py-20 mt-37">
         <div className="title">
           <h1 className="text-4xl font-bold">404 - Page Not Found</h1>

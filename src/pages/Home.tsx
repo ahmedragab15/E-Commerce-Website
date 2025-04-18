@@ -6,6 +6,7 @@ import ProductCard from "../components/ProductCard";
 import ProductsContainer from "../components/ProductsContainer";
 import { SliderRight, SliderLeft } from "../components/swiper/Slider";
 import { ProductList } from "../data";
+import { Helmet } from "react-helmet";
 
 //*  Render   */
 const renderProducts = ProductList.map((product) => (
@@ -23,6 +24,9 @@ const renderProducts2 = ProductList.map((product) => (
 const Home = () => {
   return (
     <>
+      <Helmet>
+        <title>Home | E-commerce Store</title>
+      </Helmet>
       <main className="mt-37">
         <section className="hero grid lg:grid-cols-5 p-8 gap-4">
           <CategoryAside />

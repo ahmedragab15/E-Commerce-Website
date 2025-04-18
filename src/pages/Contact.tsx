@@ -2,10 +2,14 @@ import { PhoneCall, MessagesSquare } from "lucide-react";
 import Images from "../components/Images";
 import { SquiredButton } from "../components/UI/Button";
 import Input from "../components/UI/Input";
+import { Helmet } from "react-helmet";
 
 const Contact = () => {
   return (
     <>
+      <Helmet>
+        <title>Contact | E-commerce Store</title>
+      </Helmet>
       <main className="mt-37">
         <section className="heading h-96 absolute top-11 lg:top-2 left-0 right-0 flex flex-col justify-center items-center gap-3" style={{ background: `url(${Images.contactImgs.c1}) no-repeat center / cover` }}>
           <h1 className="text-3xl md:text-5xl text-white font-medium mt-6 text-center">Contact Us for any Request</h1>
