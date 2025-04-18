@@ -41,7 +41,7 @@ const CartProvider = ({ children }: { children: ReactNode }) => {
         setCartItems((prevItems) => prevItems.filter((i) => i.id !== item.id))
     };
 
-    return <CartContext.Provider value={{ cartItems, addCartItem, removeCartItem }}>{children}</CartContext.Provider>;
+    return <CartContext.Provider value={{ cartItems, addCartItem, removeCartItem, setCartItems }}>{children}</CartContext.Provider>;
 };
 
 export { CartProvider, CartContext };

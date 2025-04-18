@@ -4,12 +4,27 @@ import { CartContext } from "../components/context/CartContext";
 import toast from "react-hot-toast";
 
 const Cart = () => {
-  const { cartItems, removeCartItem } = useContext(CartContext);
+  const { cartItems, removeCartItem, setCartItems } = useContext(CartContext);
 
   const handleRemoveFromCart = (id: number) => {
     removeCartItem({ id });
     toast.success("Item removed from cart");
   };
+
+const handleQuantityChange = (id: number, quantity: number) => {
+  console.log("handleQuantityChange", id, quantity);
+  const existingCartItemIndex = cartItems.findIndex((item: { id: number }) => item.id === id);
+  if (existingCartItemIndex !== -1) {
+    if (quantity <= 0) {
+      removeCartItem({ id });
+    } else {
+      const updatedCartItems = [...cartItems];
+      updatedCartItems[existingCartItemIndex].quantity = quantity;
+      setCartItems(updatedCartItems);
+    }
+  }
+};
+
   return (
     <>
       <main className="container mx-auto py-10 space-y-10 mt-37">
@@ -31,9 +46,9 @@ const Cart = () => {
             </div>
           </div>
           <div className="list py-6 px-14 sm:px-0 space-y-6">
-            {cartItems.map((item: { id: number; title: string; image: string; category: string; price: number; quantity: number; total: number }) => (
-              <div key={item.id} className="product bg-neutral-100 flex flex-col sm:flex-row justify-evenly items-center gap-1 lg:gap-8 border-y border-gray-200 py-2 rounded-xl">
-                <img src={item.image} className="bg-gray-100 w-44 max-w-11/12 h-44 object-center rounded-xl" alt="hero image" />
+            {cartItems.map((item: { id: number; title: string; image: string; category: string; price: number; quantity: number; total: number }, idx: number) => (
+              <div key={idx} className="product bg-neutral-100 flex flex-col sm:flex-row justify-evenly items-center gap-1 lg:gap-8 border-y border-gray-200 py-2 rounded-xl">
+                <img src={item.image} className="bg-gray-100 w-44 max-w-11/12 h-44 object-center rounded-xl" alt={item.title} />
                 <div className="details flex flex-col sm:gap-20">
                   <h3 className="font-medium">{item.title}</h3>
                   <div className="space-y-2">
@@ -55,18 +70,24 @@ const Cart = () => {
                   </div>
                 </div>
                 <div className="quantity font-medium space-x-2 lg:space-x-6">
-                  <button className="border border-gray-300 bg-neutral-100 hover:bg-neutral-200 lg:text-xl py-0.5 px-2 lg:px-3 cursor-pointer">-</button>
+                  <button className="border border-gray-300 bg-neutral-100 hover:bg-neutral-200 lg:text-xl py-0.5 px-2 lg:px-3 cursor-pointer" onClick={() => handleQuantityChange(item.id, item.quantity - 1)}>
+                    -
+                  </button>
+
                   <span className=" lg:text-xl">{item.quantity}</span>
-                  <button className="border border-gray-300 bg-neutral-100 hover:bg-neutral-200 lg:text-xl py-0.5 px-2 lg:px-3 cursor-pointer">+</button>
+
+                  <button className="border border-gray-300 bg-neutral-100 hover:bg-neutral-200 lg:text-xl py-0.5 px-2 lg:px-3 cursor-pointer" onClick={() => handleQuantityChange(item.id, item.quantity + 1)}>
+                    +
+                  </button>
                 </div>
-                <span className="price lg:text-xl font-medium">${item.price}</span>
-                <div className="total-price lg:text-xl font-medium">${item.price * item.quantity}</div>
+                <span className="price lg:text-xl font-medium">${item.price?.toFixed(2)}</span>
+                <div className="total-price lg:text-xl font-medium">${(item.price * item.quantity)?.toFixed(2)}</div>
               </div>
             ))}
           </div>
           <div className="confirmation text-right border-t border-gray-200 py-6 px-4 space-y-3 mt-16">
             <h3 className="text-2xl font-medium">
-              Total Amount:{" "}
+              Total Amount:
               <span className="ml-6">
                 $
                 {cartItems

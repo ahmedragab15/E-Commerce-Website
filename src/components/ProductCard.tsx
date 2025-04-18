@@ -4,6 +4,7 @@ import toast from "react-hot-toast";
 import { IProduct } from "../interfaces";
 import { useContext } from "react";
 import { CartContext } from "./context/CartContext";
+import { Link } from "react-router-dom";
 
 interface Iprops extends IProduct {
   product: IProduct;
@@ -24,14 +25,18 @@ const ProductCard = ({ id, image, title, category, price, discountPercentage, im
   return (
     <>
       <div className={`product-card w-2xs drop-shadow-lg ${productCardBGColor} p-4 pb-1 rounded-lg`} key={id}>
-        <div className="img-box">
-          <img src={image} className={`${imageBGColor} rounded-lg w-full h-58 object-fit cursor-pointer`} alt={title} />
-        </div>
+        <Link to={`/product/${id}`}>
+          <div className="img-box">
+            <img src={image} className={`${imageBGColor} rounded-lg w-full h-58 object-fit cursor-pointer`} alt={title} />
+          </div>
+        </Link>
         <div className="product-details">
           <div className="flex justify-between pt-2 gap-2">
-            <h2 className="font-medium line-clamp-1" title={title}>
-              {title}
-            </h2>
+            <Link to={`/product/${id}`}>
+              <h2 className="font-medium line-clamp-1" title={title}>
+                {title}
+              </h2>
+            </Link>
             <div className="rating flex items-center space-x-0.5">
               {Array.from({ length: Math.floor(rating.stars) }, (_, index) => (
                 <Star key={index} className="text-orange-300" fill="#FFA621" size={15} />

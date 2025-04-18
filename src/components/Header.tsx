@@ -56,6 +56,18 @@ const Header = () => {
               <li>
                 <NavLink
                   className="font-medium hover:text-white"
+                  to="/shop"
+                  onClick={() => {
+                    setOpenNav(false);
+                    transitionHandler();
+                  }}
+                >
+                  Shop
+                </NavLink>
+              </li>
+              <li>
+                <NavLink
+                  className="font-medium hover:text-white"
                   to="/about-us"
                   onClick={() => {
                     setOpenNav(false);
