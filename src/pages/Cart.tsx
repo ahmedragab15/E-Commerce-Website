@@ -3,6 +3,7 @@ import { useContext } from "react";
 import { CartContext } from "../components/context/CartContext";
 import toast from "react-hot-toast";
 import { Helmet } from "react-helmet";
+import { Link } from "react-router-dom";
 
 const Cart = () => {
   const { cartItems, removeCartItem, setCartItems } = useContext(CartContext);
@@ -103,8 +104,12 @@ const Cart = () => {
 
             <span className="block text-sm mb-8">Delivery fee is not included</span>
             <div className="btns flex flex-col sm:flex-row items-center gap-4">
-              <button className="font-medium inline-block ml-auto text-orange-400 border border-orange-400 hover:bg-orange-400 hover:text-white cursor-pointer py-2 px-8 rounded-sm">Continue Shopping</button>
-              <button className="font-medium inline-block ml-auto sm:ml-0 text-white border bg-orange-400 hover:bg-orange-500 cursor-pointer py-2 px-8 rounded-sm">Proceed to Checkout</button>
+              <Link className="inline-block ml-auto" to="/shop">
+                <button className="font-medium text-orange-400 border border-orange-400 hover:bg-orange-400 hover:text-white cursor-pointer py-2 px-8 rounded-sm">Continue Shopping</button>
+              </Link>
+              <Link to="/checkout">
+                <button className="font-medium ml-auto sm:ml-0 text-white border bg-orange-400 hover:bg-orange-500 cursor-pointer py-2 px-8 rounded-sm">Proceed to Checkout</button>
+              </Link>
             </div>
           </div>
         </section>

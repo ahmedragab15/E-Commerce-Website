@@ -1,10 +1,11 @@
-import { Star } from "lucide-react";
+import { Heart, Star } from "lucide-react";
 import { CartButton } from "./UI/Button";
 import toast from "react-hot-toast";
 import { IProduct } from "../interfaces";
 import { useContext } from "react";
 import { CartContext } from "./context/CartContext";
 import { Link } from "react-router-dom";
+import { WhishListContext } from "./context/WhishlistContext";
 
 interface Iprops extends IProduct {
   product: IProduct;
@@ -16,10 +17,23 @@ const ProductCard = ({ id, image, title, category, price, discountPercentage, im
   /* State */
 
   const { addCartItem } = useContext(CartContext);
+  const { addWhishListItem } = useContext(WhishListContext);
 
   const handleAddToCart = () => {
     addCartItem(product);
     toast.success("Item added to cart");
+  };
+
+  const handleAddToWhishList = (e: React.MouseEvent<SVGSVGElement>) => {
+    const heartIcon = e.target as HTMLElement
+    heartIcon.classList.add("fill-red-500");
+    heartIcon.classList.add("text-red-500");
+    setTimeout(() => {
+      heartIcon.classList.remove("fill-red-500");
+      heartIcon.classList.remove("text-red-500");
+    }, 800);
+    addWhishListItem(product);
+    toast.success("Item added to whishlist");
   };
 
   return (
@@ -54,6 +68,11 @@ const ProductCard = ({ id, image, title, category, price, discountPercentage, im
               <span className="discount text-sm font-medium text-gray-400 line-through">$ {(+price * (+discountPercentage / 100) + price).toFixed(2)}</span>
               <span className="discount-percent text-sm font-medium text-orange-400 ml-2">-{discountPercentage}%</span>
             </div>
+            <Heart
+              size={20}
+              className="cursor-pointer hover:scale-110 duration-200"
+              onClick={handleAddToWhishList}
+            />
             <CartButton onClick={handleAddToCart} />
           </div>
         </div>

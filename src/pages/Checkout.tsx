@@ -2,8 +2,37 @@ import { Trash2 } from "lucide-react";
 import { Link } from "react-router-dom";
 import Images from "../components/Images";
 import { Helmet } from "react-helmet";
+import { useContext } from "react";
+import { CartContext } from "../components/context/CartContext";
+import toast from "react-hot-toast";
 
 const Checkout = () => {
+  const { cartItems, removeCartItem, setCartItems } = useContext(CartContext);
+
+  const handleRemoveFromCart = (id: number) => {
+    removeCartItem({ id });
+    toast.success("Item removed from cart");
+  };
+
+  const handleQuantityChange = (id: number, quantity: number) => {
+    console.log("handleQuantityChange", id, quantity);
+    const existingCartItemIndex = cartItems.findIndex((item: { id: number }) => item.id === id);
+    if (existingCartItemIndex !== -1) {
+      if (quantity <= 0) {
+        removeCartItem({ id });
+      } else {
+        const updatedCartItems = [...cartItems];
+        updatedCartItems[existingCartItemIndex].quantity = quantity;
+        setCartItems(updatedCartItems);
+      }
+    }
+  };
+
+  const total = cartItems
+    .map((item: { price: number; quantity: number }) => item.price * item.quantity)
+    .reduce((a: number, b: number) => a + b, 0)
+
+
   return (
     <>
       <Helmet>
@@ -11,7 +40,7 @@ const Checkout = () => {
       </Helmet>
       <main className="mt-37">
         <div className="container mx-auto my-12 py-8 px-10 xl:px-18 bg-neutral-100">
-          <Link to="/" className="inline-block underline text-orange-400 font-medium dec hover:text-black py-2">
+          <Link to="/shop" className="inline-block underline text-orange-400 font-medium dec hover:text-black py-2">
             &lt; Continue Shopping
           </Link>
           <div className="cart-header pt-8 pb-4 border-t border-gray-200">
@@ -20,48 +49,32 @@ const Checkout = () => {
           </div>
           <div className="wrapper flex flex-col lg:flex-row justify-between gap-4">
             <div className="cart-items space-y-8 lg:w-3/5 ">
-              <div className="item w-fit mx-auto sm:w-auto bg-white flex flex-col sm:flex-row justify-evenly items-center gap-4 py-4 px-6 rounded-xl shadow-lg">
-                <img src={Images.homeImgs.h2} className="bg-gray-100 w-20 lg:w-30 h-auto object-fit" alt="hero image" />
-                <div>
-                  <h3 className="font-medium">Product Name</h3>
-                  <h3 className="text-sm text-gray-600">Product description</h3>
+              {cartItems.map((item: { id: number; title: string; image: string; description: string; category: string; price: number; quantity: number; total: number }, idx: number) => (
+                <div key={idx} className="item w-fit mx-auto sm:w-auto bg-white flex flex-col sm:flex-row justify-evenly items-center gap-4 py-4 px-6 rounded-xl shadow-lg">
+                  <img src={item.image} className="bg-gray-100 w-20 lg:w-30 h-30 object-fit" alt={item.title} />
+                  <div>
+                    <h3 title={item.title} className="font-medium line-clamp-1">
+                      {item.title}
+                    </h3>
+                    <h3 title={item.description} className="text-sm text-gray-600 max-w-50 line-clamp-2">
+                      {item.description}
+                    </h3>
+                  </div>
+                  <div className="quantity flex font-medium space-x-2 lg:space-x-3">
+                    <button className="border border-gray-300 bg-neutral-100 hover:bg-neutral-200 lg:text-lg px-1 lg:px-2 cursor-pointer" onClick={() => handleQuantityChange(item.id, item.quantity - 1)}>
+                      -
+                    </button>
+                    <span className=" lg:text-lg">{item.quantity}</span>
+                    <button className="border border-gray-300 bg-neutral-100 hover:bg-neutral-200 lg:text-lg px-1 lg:px-2 cursor-pointer" onClick={() => handleQuantityChange(item.id, item.quantity + 1)}>
+                      +
+                    </button>
+                  </div>
+                  <span className="price font-medium">${(item.price * item.quantity).toFixed(2)}</span>
+                  <button onClick={() => handleRemoveFromCart(item.id)}>
+                    <Trash2 className="text-red-400 hover:text-red-500 cursor-pointer" />
+                  </button>
                 </div>
-                <div className="quantity flex font-medium space-x-2 lg:space-x-3">
-                  <button className="border border-gray-300 bg-neutral-100 hover:bg-neutral-200 lg:text-lg px-1 lg:px-2 cursor-pointer">-</button>
-                  <span className=" lg:text-lg">2</span>
-                  <button className="border border-gray-300 bg-neutral-100 hover:bg-neutral-200 lg:text-lg px-1 lg:px-2 cursor-pointer">+</button>
-                </div>
-                <span className="price font-medium">$ 700.00</span>
-                <Trash2 className="text-red-400 hover:text-red-500 cursor-pointer" />
-              </div>
-              <div className="item w-fit mx-auto sm:w-auto bg-white flex flex-col sm:flex-row justify-evenly items-center gap-4 py-4 px-6 rounded-xl shadow-lg">
-                <img src={Images.homeImgs.h2} className="bg-gray-100 w-20 lg:w-30 h-auto object-fit" alt="hero image" />
-                <div>
-                  <h3 className="font-medium">Product Name</h3>
-                  <h3 className="text-sm text-gray-600">Product description</h3>
-                </div>
-                <div className="quantity flex font-medium space-x-2 lg:space-x-3">
-                  <button className="border border-gray-300 bg-neutral-100 hover:bg-neutral-200 lg:text-lg px-1 lg:px-2 cursor-pointer">-</button>
-                  <span className=" lg:text-lg">2</span>
-                  <button className="border border-gray-300 bg-neutral-100 hover:bg-neutral-200 lg:text-lg px-1 lg:px-2 cursor-pointer">+</button>
-                </div>
-                <span className="price font-medium">$ 700.00</span>
-                <Trash2 className="text-red-400 hover:text-red-500 cursor-pointer" />
-              </div>
-              <div className="item w-fit mx-auto sm:w-auto bg-white flex flex-col sm:flex-row justify-evenly items-center gap-4 py-4 px-6 rounded-xl shadow-lg">
-                <img src={Images.homeImgs.h2} className="bg-gray-100 w-20 lg:w-30 h-auto object-fit" alt="hero image" />
-                <div>
-                  <h3 className="font-medium">Product Name</h3>
-                  <h3 className="text-sm text-gray-600">Product description</h3>
-                </div>
-                <div className="quantity flex font-medium space-x-2 lg:space-x-3">
-                  <button className="border border-gray-300 bg-neutral-100 hover:bg-neutral-200 lg:text-lg px-1 lg:px-2 cursor-pointer">-</button>
-                  <span className=" lg:text-lg">2</span>
-                  <button className="border border-gray-300 bg-neutral-100 hover:bg-neutral-200 lg:text-lg px-1 lg:px-2 cursor-pointer">+</button>
-                </div>
-                <span className="price font-medium">$ 700.00</span>
-                <Trash2 className="text-red-400 hover:text-red-500 cursor-pointer" />
-              </div>
+              ))}
             </div>
             <div className="card-details lg:w-2/5 bg-white rounded-xl shadow-lg py-8 px-6 h-fit">
               <h3 className="text-lg font-medium">Card Details</h3>
@@ -122,19 +135,19 @@ const Checkout = () => {
                   <div className="balance flex flex-col pl-2 sm:pl-0 sm:flex-row justify-between gap-2">
                     <h5 className="font-medium">Balance</h5>
                     <h5 className="font-medium text-sm">
-                      $ <span>700.00</span>
+                      <span>${total.toLocaleString()}</span>
                     </h5>
                   </div>
                   <div className="delivery-fee flex flex-col pl-2 sm:pl-0 sm:flex-row justify-between gap-2">
                     <h5 className="font-medium">Delivery fee</h5>
                     <h5 className="font-medium text-xs pr-2">
-                      $ <span>70.00</span>
+                      <span>$40.00</span>
                     </h5>
                   </div>
                   <div className="total-amount flex flex-col pl-2 sm:pl-0 sm:flex-row justify-between gap-2">
                     <h5 className="text-lg font-bold">Total bill amount</h5>
                     <h5 className="text-lg font-bold">
-                      $ <span>770.00</span>
+                      <span>${(total + 40).toLocaleString()}</span>
                     </h5>
                   </div>
                   <input className="font-medium w-full text-lg text-white bg-orange-400 border border-orange-400 hover:text-orange-400 hover:bg-white cursor-pointer py-3 my-6 rounded-sm" type="submit" value="Confirm Payment" />
