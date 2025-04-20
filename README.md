@@ -1,60 +1,32 @@
-# React + TypeScript + Vite
+# 🛍️ E-Commerce Store (React + TypeScript + Vite)
 
-**UNFINISHED YET**
+A fully dynamic and responsive **E-Commerce Store** built using **React**, **TypeScript**, **Vite**, and **TailwindCSS** — designed with a **modern UI/UX**, seamless navigation, and rich interactive features for a smooth shopping experience.
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## 🚀 Tech Stack
 
-Currently, two official plugins are available:
+- **React** – UI Library  
+- **TypeScript** – Type safety and scalability  
+- **Vite** – Fast and modern build tool  
+- **Tailwind CSS** – Utility-first styling  
+- **React Router** – Routing & navigation  
+- **React Helmet** – Dynamic SEO meta management
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## ✨ Features
 
-## Expanding the ESLint configuration
+✅ **Modern & Responsive Design**  
+✅ **Add / Remove Products to Cart**  
+✅ **Add / Remove Products to Wishlist**  
+✅ **Dynamic Product Details Page**  
+✅ **Login & Signup Authentication UI**  
+✅ **Smooth Page Transitions between routes**  
+✅ **Animated UI Components**  
+✅ **SEO Friendly with React Helmet**  
+✅ **Clean & Maintainable Codebase**  
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+## 📸 Preview
 
-```js
-export default tseslint.config({
-  extends: [
-    // Remove ...tseslint.configs.recommended and replace with this
-    ...tseslint.configs.recommendedTypeChecked,
-    // Alternatively, use this for stricter rules
-    ...tseslint.configs.strictTypeChecked,
-    // Optionally, add this for stylistic rules
-    ...tseslint.configs.stylisticTypeChecked,
-  ],
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
-```
+![ecommerce-preview](src/assets/images/preview.png)
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+## 🚀 Live Demo
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default tseslint.config({
-  plugins: {
-    // Add the react-x and react-dom plugins
-    'react-x': reactX,
-    'react-dom': reactDom,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended typescript rules
-    ...reactX.configs['recommended-typescript'].rules,
-    ...reactDom.configs.recommended.rules,
-  },
-})
-```
-
-## 🚀 Live Demo  
-
-[🔗 Live Demo Here](https://react-ecommerce15.netlify.app/)  
+[🔗 View Live Store](https://react-ecommerce15.netlify.app)

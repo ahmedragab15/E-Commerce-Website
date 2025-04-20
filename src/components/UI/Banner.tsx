@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { RoundedButton } from "./UI/Button";
+import { RoundedButton } from "./Button";
 
 interface Iprop {
   src: string;

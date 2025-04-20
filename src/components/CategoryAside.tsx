@@ -11,7 +11,7 @@ const renderCategories = [...new Set(ProductList.map((product) => product.catego
 
 const CategoryAside = () => {
   return (
-    <aside className="bg-gray-100">
+    <aside className="bg-gray-100 w-full">
       <ul className=" flex lg:flex-col gap-8 py-6 px-8 flex-wrap">
         {renderCategories}
       </ul>

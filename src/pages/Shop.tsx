@@ -3,7 +3,7 @@ import FilterAside from "../components/FilterAside";
 import ProductCard from "../components/ProductCard";
 import Pagination from "../components/UI/Pagination";
 import { ProductList } from "../data";
-import { BigBanner, VerticalBanner } from "../components/Banner";
+import { BigBanner, VerticalBanner } from "../components/UI/Banner";
 import Images from "../components/StaticImages";
 
 const Shop = () => {

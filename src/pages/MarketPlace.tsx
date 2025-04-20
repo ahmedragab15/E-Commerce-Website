@@ -1,5 +1,5 @@
 import { SwiperSlide } from "swiper/react";
-import {BigBanner} from "../components/Banner";
+import { BigBanner } from "../components/UI/Banner";
 import { ProductList } from "../data";
 import ProductCard from "../components/ProductCard";
 import { SliderLeft, SliderRight } from "../components/swiper/Slider";

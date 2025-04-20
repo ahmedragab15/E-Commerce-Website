@@ -7,7 +7,7 @@ import ProductsContainer from "../components/ProductsContainer";
 import { SliderRight, SliderLeft, HeroSlider } from "../components/swiper/Slider";
 import { ProductList } from "../data";
 import { Helmet } from "react-helmet";
-import { BigBanner, SmallBanner } from "../components/Banner";
+import { BigBanner, SmallBanner } from "../components/UI/Banner";
 import { Link } from "react-router-dom";
 
 //*  Render   */
@@ -35,7 +35,7 @@ const Home = () => {
             <CategoryAside />
           </div>
           <div className="center lg:col-span-3 bg-gray-100 pt-10 pl-6">
-            <div className=" lg:justify-self-end pr-10 mb-6">
+            <div className="lg:justify-self-end pr-10 mb-6">
               <h2 className="text-3xl font-medium">Buy Quality & Save Money </h2>
               <p className="lg:text-center">at the same time to enjoy your shopping</p>
             </div>
