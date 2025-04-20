@@ -1,8 +1,7 @@
 import { Link } from "react-router-dom";
 import { SquiredButton } from "./UI/Button";
-import Images from "./Images";
+import Images from "./StaticImages";
 import { Facebook, Twitter, Instagram } from "lucide-react";
-
 
 const Footer = () => {
   return (
@@ -10,7 +9,7 @@ const Footer = () => {
       <div className="top-footer bg-neutral-800 ">
         <div className="container mx-auto flex justify-between flex-col lg:flex-row lg:items-center gap-4 py-10 px-8">
           <Link className="self-center" to="/">
-            <img className="w-28" src={Images.logo} alt="Logo" />
+            <img className="w-50" src={Images["Logo2"]} alt="Logo" />
           </Link>
           <div className="footer-sub space-y-5 w-full lg:w-5/12  ">
             <h3>Subscribe To Get The Best Deals First</h3>
@@ -24,10 +23,10 @@ const Footer = () => {
             <p className="text-neutral-400">Get access to exclusive offers!</p>
             <div className="app-link flex space-x-2 my-4">
               <Link to="#">
-                <img src={Images.GP} alt="Google Play App" />
+                <img src={Images.GooglePlay} alt="Google Play App" />
               </Link>
               <Link to="#">
-                <img src={Images.AS} alt="App Store App" />
+                <img src={Images.AppStore} alt="App Store App" />
               </Link>
             </div>
           </div>

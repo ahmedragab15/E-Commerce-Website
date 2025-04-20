@@ -1,5 +1,5 @@
 import { PhoneCall, MessagesSquare } from "lucide-react";
-import Images from "../components/Images";
+import Images from "../components/StaticImages";
 import { SquiredButton } from "../components/UI/Button";
 import Input from "../components/UI/Input";
 import { Helmet } from "react-helmet";

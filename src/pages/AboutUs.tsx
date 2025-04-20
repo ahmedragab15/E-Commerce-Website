@@ -1,5 +1,5 @@
 import { Helmet } from "react-helmet";
-import Images from "../components/Images";
+import Images from "../components/StaticImages";
 
 const AboutUs = () => {
   return (

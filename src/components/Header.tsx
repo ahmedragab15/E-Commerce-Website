@@ -1,7 +1,7 @@
 import { Link, NavLink } from "react-router-dom";
 import { RoundedButton, SquiredButton } from "./UI/Button";
 import { CircleHelp, Heart, Search, ShoppingCart } from "lucide-react";
-import Images from "./Images";
+import Images from "./StaticImages";
 import { useState } from "react";
 import PageTransition from "./PageTransition";
 import { useContext } from "react";
@@ -9,11 +9,11 @@ import { CartContext } from "./context/CartContext";
 import { WhishListContext } from "./context/WhishlistContext";
 
 const Header = () => {
-  const [openNav, setOpenNav] = useState(false);
-
+  const [openSideNav, setOpenSideNav] = useState(false);
   const [isAnimating, setIsAnimating] = useState(false);
   const { cartItems } = useContext(CartContext);
-  const {whishListItems} = useContext(WhishListContext)
+  const { whishListItems } = useContext(WhishListContext);
+
   const transitionHandler = () => {
     setIsAnimating(!isAnimating);
     setTimeout(() => {
@@ -26,14 +26,14 @@ const Header = () => {
       <header className="fixed top-0 right-0 left-0 bg-orange-400 lg:py-5 px-8 flex flex-col justify-evenly z-[999] shadow-sm space-y-3">
         <div className="top-nav flex justify-between items-center py-1 lg:py-0 relative">
           <span className="hidden lg:block">Selle easily on our store</span>
-          <nav className={`fixed lg:static z-50 top-0 ${openNav ? "right-0" : "-right-full"} bottom-0 w-2/4 duration-700 lg:w-auto bg-orange-400 shadow-black shadow-sm lg:shadow-none p-5 lg:p-0 lg:bg-transparent flex items-center justify-center`}>
+          <nav className={`fixed lg:static z-50 top-0 ${openSideNav ? "right-0" : "-right-full"} bottom-0 w-2/4 duration-700 lg:w-auto bg-orange-400 shadow-black shadow-sm lg:shadow-none p-5 lg:p-0 lg:bg-transparent flex items-center justify-center`}>
             <ul className="nav-items block lg:flex space-y-8 lg:space-y-0 lg:space-x-10">
               <li>
                 <NavLink
-                  className={`nav-item text-2xl lg:text-base font-medium hover:text-white ${openNav ? "fade" : ""}`}
+                  className={`nav-item text-2xl lg:text-base font-medium hover:text-white ${openSideNav ? "fade" : ""}`}
                   to="/"
                   onClick={() => {
-                    setOpenNav(false);
+                    setOpenSideNav(false);
                     transitionHandler();
                   }}
                 >
@@ -42,10 +42,10 @@ const Header = () => {
               </li>
               <li>
                 <NavLink
-                  className={`nav-item text-2xl lg:text-base font-medium hover:text-white ${openNav ? "fade" : ""}`}
+                  className={`nav-item text-2xl lg:text-base font-medium hover:text-white ${openSideNav ? "fade" : ""}`}
                   to="/market-store"
                   onClick={() => {
-                    setOpenNav(false);
+                    setOpenSideNav(false);
                     transitionHandler();
                   }}
                 >
@@ -54,10 +54,10 @@ const Header = () => {
               </li>
               <li>
                 <NavLink
-                  className={`nav-item text-2xl lg:text-base font-medium hover:text-white ${openNav ? "fade" : ""}`}
+                  className={`nav-item text-2xl lg:text-base font-medium hover:text-white ${openSideNav ? "fade" : ""}`}
                   to="/shop"
                   onClick={() => {
-                    setOpenNav(false);
+                    setOpenSideNav(false);
                     transitionHandler();
                   }}
                 >
@@ -66,10 +66,10 @@ const Header = () => {
               </li>
               <li>
                 <NavLink
-                  className={`nav-item text-2xl lg:text-base font-medium hover:text-white ${openNav ? "fade" : ""}`}
+                  className={`nav-item text-2xl lg:text-base font-medium hover:text-white ${openSideNav ? "fade" : ""}`}
                   to="/about-us"
                   onClick={() => {
-                    setOpenNav(false);
+                    setOpenSideNav(false);
                     transitionHandler();
                   }}
                 >
@@ -78,10 +78,10 @@ const Header = () => {
               </li>
               <li>
                 <NavLink
-                  className={`nav-item text-2xl lg:text-base font-medium hover:text-white ${openNav ? "fade" : ""}`}
+                  className={`nav-item text-2xl lg:text-base font-medium hover:text-white ${openSideNav ? "fade" : ""}`}
                   to="/contact"
                   onClick={() => {
-                    setOpenNav(false);
+                    setOpenSideNav(false);
                     transitionHandler();
                   }}
                 >
@@ -94,7 +94,7 @@ const Header = () => {
             <Link
               to="login"
               onClick={() => {
-                setOpenNav(true);
+                setOpenSideNav(true);
                 transitionHandler();
               }}
             >
@@ -103,7 +103,7 @@ const Header = () => {
             <Link
               to="/login"
               onClick={() => {
-                setOpenNav(true);
+                setOpenSideNav(true);
                 transitionHandler();
               }}
             >
@@ -116,13 +116,13 @@ const Header = () => {
             <Link
               to="/"
               onClick={() => {
-                setOpenNav(false);
+                setOpenSideNav(false);
                 transitionHandler();
               }}
             >
-              <img className="w-12" src={Images.logo} alt="Logo" />
+              <img className="w-40 md:w-45 bg-white rounded-2xl" src={Images.Logo} alt="Logo" />
             </Link>
-            <div className={`ham-menu h-12 w-10 relative flex lg:hidden cursor-pointer z-50 ${openNav ? "active" : ""}`} onClick={() => setOpenNav(!openNav)}>
+            <div className={`ham-menu h-12 w-10 relative flex lg:hidden cursor-pointer z-50 ${openSideNav ? "active" : ""}`} onClick={() => setOpenSideNav(!openSideNav)}>
               <span></span>
               <span></span>
               <span></span>

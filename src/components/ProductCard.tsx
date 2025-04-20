@@ -21,11 +21,11 @@ const ProductCard = ({ id, image, title, category, price, discountPercentage, im
 
   const handleAddToCart = () => {
     addCartItem(product);
-    toast.success("Item added to cart");
+    toast.success("Item added to cart 🛒");
   };
 
   const handleAddToWhishList = (e: React.MouseEvent<SVGSVGElement>) => {
-    const heartIcon = e.target as HTMLElement
+    const heartIcon = e.target as HTMLElement;
     heartIcon.classList.add("fill-red-500");
     heartIcon.classList.add("text-red-500");
     setTimeout(() => {
@@ -33,19 +33,19 @@ const ProductCard = ({ id, image, title, category, price, discountPercentage, im
       heartIcon.classList.remove("text-red-500");
     }, 800);
     addWhishListItem(product);
-    toast.success("Item added to whishlist");
+    toast.success("Item added to whishlist ❤");
   };
 
   return (
     <>
-      <div className={`product-card w-2xs drop-shadow-lg ${productCardBGColor} p-4 pb-1 rounded-lg`} key={id}>
+      <div className={`product-card w-2xs drop-shadow-lg ${productCardBGColor} p-4 pb-2 rounded-lg`} key={id}>
         <Link to={`/product/${id}`}>
           <div className="img-box">
             <img src={image} className={`${imageBGColor} rounded-lg w-full h-58 object-fit cursor-pointer`} alt={title} />
           </div>
         </Link>
         <div className="product-details">
-          <div className="flex justify-between pt-2 gap-2">
+          <div className="flex flex-col lg:flex-row justify-between pt-2 gap-2">
             <Link to={`/product/${id}`}>
               <h2 className="font-medium line-clamp-1" title={title}>
                 {title}
@@ -61,18 +61,16 @@ const ProductCard = ({ id, image, title, category, price, discountPercentage, im
               <span className="text-xs text-gray-600">({rating.count})</span>
             </div>
           </div>
-          <span className="category text-sm text-gray-500">{category}</span>
-          <div className="flex justify-between items-center">
+          <div className="flex justify-between">
+            <span className="category text-sm text-gray-500">{category}</span>
+            <Heart size={20} className="cursor-pointer hover:scale-110 duration-200" onClick={handleAddToWhishList} />
+          </div>
+          <div className="flex  flex-col lg:flex-row justify-between gap-1 lg:items-center">
             <div className="price-discount leading-0">
-              <span className="price text-lg block font-medium">$ {price.toFixed(2)}</span>
-              <span className="discount text-sm font-medium text-gray-400 line-through">$ {(+price * (+discountPercentage / 100) + price).toFixed(2)}</span>
-              <span className="discount-percent text-sm font-medium text-orange-400 ml-2">-{discountPercentage}%</span>
+              <span className="price text-lg block font-medium">${price.toFixed(2)}</span>
+              <span className="discount text-xs xl:text-sm font-medium text-gray-400 line-through">${(+price * (+discountPercentage / 100) + price).toFixed(2)}</span>
+              <span className="discount-percent text-xs xl:text-sm font-medium text-orange-400 ml-2">-{discountPercentage}%</span>
             </div>
-            <Heart
-              size={20}
-              className="cursor-pointer hover:scale-110 duration-200"
-              onClick={handleAddToWhishList}
-            />
             <CartButton onClick={handleAddToCart} />
           </div>
         </div>

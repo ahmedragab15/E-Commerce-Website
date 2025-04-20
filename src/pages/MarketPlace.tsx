@@ -1,9 +1,10 @@
 import { SwiperSlide } from "swiper/react";
-import Banner from "../components/Banner";
+import {BigBanner} from "../components/Banner";
 import { ProductList } from "../data";
 import ProductCard from "../components/ProductCard";
 import { SliderLeft, SliderRight } from "../components/swiper/Slider";
 import { Helmet } from "react-helmet";
+import Images from "../components/StaticImages";
 
 const MarketPlace = () => {
   //*  Render     */
@@ -19,23 +20,23 @@ const MarketPlace = () => {
       </Helmet>
       <main className="py-10 mt-37">
         <div className="container mx-auto">
-          <Banner />
+          <BigBanner src={Images.banners.bb1} />
           <SliderRight>{renderProducts.slice(40)}</SliderRight>
-          <Banner />
+          <BigBanner src={Images.banners.bb2} />
           <SliderLeft>{renderProducts.slice(60)}</SliderLeft>
-          <Banner />
+          <BigBanner src={Images.banners.bb4} />
           <SliderRight>{renderProducts.slice(20)}</SliderRight>
-          <Banner />
+          <BigBanner src={Images.banners.bb3} />
           <SliderLeft>{renderProducts.slice(10)}</SliderLeft>
-          <Banner />
+          <BigBanner src={Images.banners.bb5} />
           <SliderRight>{renderProducts}</SliderRight>
-          <Banner />
+          <BigBanner src={Images.banners.bb1} />
           <SliderLeft>{renderProducts.slice(70)}</SliderLeft>
-          <Banner />
+          <BigBanner src={Images.banners.bb3} />
           <SliderRight>{renderProducts.slice(30)}</SliderRight>
-          <Banner />
+          <BigBanner src={Images.banners.bb2} />
           <SliderLeft>{renderProducts.slice(50)}</SliderLeft>
-          <Banner />
+          <BigBanner src={Images.banners.bb4} />
           <SliderRight>{renderProducts.slice(16)}</SliderRight>
         </div>
       </main>

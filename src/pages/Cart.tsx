@@ -4,14 +4,21 @@ import { CartContext } from "../components/context/CartContext";
 import toast from "react-hot-toast";
 import { Helmet } from "react-helmet";
 import { Link } from "react-router-dom";
+import { WhishListContext } from "../components/context/WhishlistContext";
 
 const Cart = () => {
   const { cartItems, removeCartItem, setCartItems } = useContext(CartContext);
+    const { addWhishListItem } = useContext(WhishListContext);
 
   const handleRemoveFromCart = (id: number) => {
     removeCartItem({ id });
-    toast.success("Item removed from cart");
+    toast.success("Item removed from cart 🗑");
   };
+
+    const handleAddToWhishList = (product: { id: number; title: string; image: string; category: string; price: number; quantity: number; total: number }) => {
+      addWhishListItem(product);
+      toast.success("Item added to whishlist ❤");
+    };
 
   const handleQuantityChange = (id: number, quantity: number) => {
     console.log("handleQuantityChange", id, quantity);
@@ -59,10 +66,22 @@ const Cart = () => {
                   <div className="space-y-2">
                     <span className="block font-medium">{item.category}</span>
                     <div className="flex flex-col sm:flex-row gap-2">
-                      <span className="text-orange-400 font-medium flex items-center gap-1">
-                        <Heart className="cursor-pointer hover:scale-110 duration-200" />
+                      <button
+                        className="text-orange-400 font-medium flex items-center gap-1 cursor-pointer hover:text-orange-500 duration-200"
+                        onClick={(e) => {
+                              const heartIcon = (e.target as HTMLElement).children[0];
+                              heartIcon.classList.add("fill-red-500");
+                              heartIcon.classList.add("text-red-500");
+                              setTimeout(() => {
+                                heartIcon.classList.remove("fill-red-500");
+                                heartIcon.classList.remove("text-red-500");
+                              }, 800);
+                          handleAddToWhishList(item);
+                        }}
+                      >
+                        <Heart />
                         Add to wishlist
-                      </span>
+                      </button>
                       <button
                         className="text-red-500 font-medium hover:text-red-600 cursor-pointer flex items-center gap-1"
                         onClick={() => {

@@ -1,6 +1,6 @@
 import { Trash2 } from "lucide-react";
 import { Link } from "react-router-dom";
-import Images from "../components/Images";
+import Images from "../components/StaticImages";
 import { Helmet } from "react-helmet";
 import { useContext } from "react";
 import { CartContext } from "../components/context/CartContext";
@@ -28,10 +28,9 @@ const Checkout = () => {
     }
   };
 
-  const total = cartItems
-    .map((item: { price: number; quantity: number }) => item.price * item.quantity)
-    .reduce((a: number, b: number) => a + b, 0)
+  const total = cartItems.map((item: { price: number; quantity: number }) => item.price * item.quantity).reduce((a: number, b: number) => a + b, 0);
 
+  const deliveryFee = 40;
 
   return (
     <>
@@ -135,19 +134,19 @@ const Checkout = () => {
                   <div className="balance flex flex-col pl-2 sm:pl-0 sm:flex-row justify-between gap-2">
                     <h5 className="font-medium">Balance</h5>
                     <h5 className="font-medium text-sm">
-                      <span>${total.toLocaleString()}</span>
+                      <span className="text-base">${total.toLocaleString()}</span>
                     </h5>
                   </div>
                   <div className="delivery-fee flex flex-col pl-2 sm:pl-0 sm:flex-row justify-between gap-2">
                     <h5 className="font-medium">Delivery fee</h5>
                     <h5 className="font-medium text-xs pr-2">
-                      <span>$40.00</span>
+                      <span>${total ? deliveryFee : 0}</span>
                     </h5>
                   </div>
                   <div className="total-amount flex flex-col pl-2 sm:pl-0 sm:flex-row justify-between gap-2">
                     <h5 className="text-lg font-bold">Total bill amount</h5>
                     <h5 className="text-lg font-bold">
-                      <span>${(total + 40).toLocaleString()}</span>
+                      <span>${total ? (total + deliveryFee).toLocaleString() : 0}</span>
                     </h5>
                   </div>
                   <input className="font-medium w-full text-lg text-white bg-orange-400 border border-orange-400 hover:text-orange-400 hover:bg-white cursor-pointer py-3 my-6 rounded-sm" type="submit" value="Confirm Payment" />

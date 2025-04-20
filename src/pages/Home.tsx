@@ -1,12 +1,14 @@
 import { SwiperSlide } from "swiper/react";
 import CategoryAside from "../components/CategoryAside";
-import Images from "../components/Images";
+import Images from "../components/StaticImages";
 import Pagination from "../components/UI/Pagination";
 import ProductCard from "../components/ProductCard";
 import ProductsContainer from "../components/ProductsContainer";
-import { SliderRight, SliderLeft } from "../components/swiper/Slider";
+import { SliderRight, SliderLeft, HeroSlider } from "../components/swiper/Slider";
 import { ProductList } from "../data";
 import { Helmet } from "react-helmet";
+import { BigBanner, SmallBanner } from "../components/Banner";
+import { Link } from "react-router-dom";
 
 //*  Render   */
 const renderProducts = ProductList.map((product) => (
@@ -27,22 +29,36 @@ const Home = () => {
       <Helmet>
         <title>Home | E-commerce Store</title>
       </Helmet>
-      <main className="mt-37">
+      <main className="mt-45 lg:mt-37">
         <section className="hero grid lg:grid-cols-5 p-8 gap-4">
-          <CategoryAside />
+          <div className="hidden lg:flex">
+            <CategoryAside />
+          </div>
           <div className="center lg:col-span-3 bg-gray-100 pt-10 pl-6">
-            <div className=" justify-self-end pr-10">
+            <div className=" lg:justify-self-end pr-10 mb-6">
               <h2 className="text-3xl font-medium">Buy Quality & Save Money </h2>
-              <p className="text-center">at the same time to enjoy your shopping</p>
+              <p className="lg:text-center">at the same time to enjoy your shopping</p>
             </div>
-            <div className="main img-box">
-              <img src={Images.homeImgs.h1} className="max-w-full h-auto object-fit" alt="hero image" />
+            <div className="main img-box max-w-[80vw]">
+              <HeroSlider>
+                <SwiperSlide>
+                  <Link to="/shop">
+                    <img src={Images.homeImgs.BH} className="max-w-full h-auto object-fit" alt="hero image" />
+                  </Link>
+                </SwiperSlide>
+                <SwiperSlide>
+                  <Link to="/shop">
+                    <img src={Images.homeImgs.BH2} className="max-w-full h-auto object-fit" alt="hero image" />
+                  </Link>
+                </SwiperSlide>
+              </HeroSlider>
             </div>
           </div>
           <div className="right">
-            <div className="img-box flex lg:flex-col gap-4 flex-wrap">
-              <span className="bg-gray-100 text-gray-500 text-2xl max-w-58 h-58 object-fit flex justify-center items-center">230 X 230</span>
-              <span className="bg-gray-100 text-gray-500 text-2xl max-w-58 h-58 object-fit flex justify-center items-center">230 X 230</span> <span className="bg-gray-100 text-gray-500 text-2xl max-w-58 h-58 object-fit flex justify-center items-center">230 X 230</span>
+            <div className="img-box flex lg:flex-col gap-4 flex-wrap justify-evenly">
+              <SmallBanner src={Images.banners.b1} percentage="70" />
+              <SmallBanner src={Images.banners.b2} percentage="45" />
+              <SmallBanner src={Images.banners.b3} percentage="30" />
             </div>
           </div>
         </section>
@@ -52,7 +68,8 @@ const Home = () => {
         <ProductsContainer containerTitle="Daily Deal" productsBGColor="bg-gray-100">
           <SliderLeft>{renderProducts2.slice(26)}</SliderLeft>
         </ProductsContainer>
-        <span className="Banner w-11/12 h-[200px] mx-auto object-cover mb-6 bg-gray-100 text-gray-500 text-3xl flex justify-center items-center">Banner</span>
+        <BigBanner src={Images.banners.bb1} />
+
         <ProductsContainer containerTitle="Top Shops">
           <SliderRight>{renderProducts.slice(50)}</SliderRight>
         </ProductsContainer>
@@ -61,13 +78,13 @@ const Home = () => {
           <SliderRight>{renderProducts2.slice(35)}</SliderRight>
           <SliderLeft>{renderProducts2.slice(55)}</SliderLeft>
         </ProductsContainer>
-        <span className="Banner w-11/12 h-[200px] mx-auto object-cover mb-6 bg-gray-100 text-gray-500 text-3xl flex justify-center items-center">Banner</span>
-        <span className="Banner w-11/12 h-[200px] mx-auto object-cover mb-6 bg-gray-100 text-gray-500 text-3xl flex justify-center items-center">Banner</span>
+        <BigBanner src={Images.banners.bb2} />
+        <BigBanner src={Images.banners.bb3} />
         <ProductsContainer containerTitle="Last Seen" classname="flex-wrap">
           <SliderRight>{renderProducts.slice(4)}</SliderRight>
           <SliderLeft>{renderProducts.slice(55)}</SliderLeft>
         </ProductsContainer>
-        <span className="Banner w-11/12 h-[200px] mx-auto object-cover mb-6 bg-gray-100 text-gray-500 text-3xl flex justify-center items-center">Banner</span>
+        <BigBanner src={Images.banners.bb4} />
         <ProductsContainer containerTitle="Top Checked product">
           <SliderRight>{renderProducts.slice(38)}</SliderRight>
         </ProductsContainer>

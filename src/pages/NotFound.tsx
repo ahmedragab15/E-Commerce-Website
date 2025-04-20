@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import Images from "../components/Images";
+import Images from "../components/StaticImages";
 import { Helmet } from "react-helmet";
 const NotFound = () => {
   return (
@@ -16,7 +16,7 @@ const NotFound = () => {
           </button>
         </div>
         <div className="img-box">
-          <img className="w-lg max-w-full" src={Images.nF} alt="not found image" />
+          <img className="w-lg max-w-full" src={Images.notFound} alt="not found image" />
         </div>
       </main>
     </>

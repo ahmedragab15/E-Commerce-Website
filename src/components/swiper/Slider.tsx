@@ -89,3 +89,44 @@ export const SliderLeft = ({ children }: { children: React.ReactNode }) => {
     </Swiper>
   );
 };
+
+export const HeroSlider = ({ children }: { children: React.ReactNode }) => {
+  return (
+    <Swiper
+      // install Swiper modules
+      modules={[Navigation, Pagination, Scrollbar, A11y, Autoplay]}
+      slidesPerView={1}
+      spaceBetween={10}
+      pagination={{
+        dynamicBullets: true,
+      }}
+      loop={true}
+      autoplay={{
+        delay: 2500,
+        disableOnInteraction: false,
+        pauseOnMouseEnter: false,
+        reverseDirection: true,
+      }}
+      breakpoints={{
+        640: {
+          slidesPerView: 1,
+          spaceBetween: 2,
+        },
+        768: {
+          slidesPerView: 1,
+          spaceBetween: 2,
+        },
+        1024: {
+          slidesPerView: 1,
+          spaceBetween: 2,
+        },
+        1550: {
+          slidesPerView: 1,
+          spaceBetween: 2,
+        },
+      }}
+    >
+      {children}
+    </Swiper>
+  );
+};

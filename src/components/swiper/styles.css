@@ -5,4 +5,14 @@
   align-items: center;
 }
 
+.swiper-pagination span{
+    background: #fff;
+    opacity: 1;
+}
 
+.swiper-pagination-bullet-active{
+    background: #ff8904 !important;
+    width: 34px !important;
+    height: 8px !important;
+    border-radius: 30px !important;
+}
