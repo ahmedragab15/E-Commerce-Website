@@ -6,14 +6,14 @@ import { MouseEventHandler } from "react";
 const FilterAside = ({ className, onClick }: { className: string; onClick: MouseEventHandler<HTMLInputElement> }) => {
   const renderInpCategories = [...new Set(ProductList.map((product) => product.category))].map((category, idx) => (
     <div key={idx} className="optionspace-x-2 ml-2 my-2">
-      <input type="checkbox" name={category} id={category} value={category} onClick={onClick} />
-      <label className="text-gray-600 ml-1" htmlFor={category}>
+      <input className="cursor-pointer" type="checkbox" name={category} id={category} value={category} onClick={onClick} />
+      <label className="text-gray-600 ml-1 cursor-pointer" htmlFor={category}>
         {category}
       </label>
     </div>
   ));
   return (
-    <aside className={` bg-gray-100 py-5 px-6 max-w-2/3 mx-auto sm:max-w-full sm h-fit mb-4 rounded-md ${className}`}>
+    <aside className={`bg-gray-100 py-5 px-6 max-w-2/3 mx-auto sm:max-w-full sm h-fit mb-4 rounded-md ${className}`}>
       <div className="options flex flex-row md:flex-col flex-wrap gap-4 items-center md:items-start">
         <h3 className="text-lg font-medium">Category</h3>
         <div className="option-box sm:mb-4 w-full">

@@ -7,6 +7,7 @@ function Login() {
       <>
         <Helmet>
           <title>Login or SignUp | E-commerce Store</title>
+          <meta name="robots" content="noindex, nofollow" />
         </Helmet>
         <main className="py-30 w-full bg-stone-100 flex flex-col justify-center items-center mt-37">
           <div className={`containerr ${isActive ? "active" : ""}  bg-white rounded-4xl shadow-lg relative w-4xl max-w-full min-h-[580px] overflow-hidden`} id="container">

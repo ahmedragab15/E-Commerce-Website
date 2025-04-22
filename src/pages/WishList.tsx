@@ -25,6 +25,7 @@ const WishList = () => {
     <>
       <Helmet>
         <title>WishList | E-commerce Store</title>
+        <meta name="robots" content="noindex, nofollow" />
       </Helmet>
       <main className="py-10 mt-37 mb-16">
         <h2 className="text-3xl font-medium text-orange-400 text-center mb-8">My Wishlist</h2>

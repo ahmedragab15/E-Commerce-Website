@@ -9,6 +9,16 @@ const Contact = () => {
     <>
       <Helmet>
         <title>Contact | E-commerce Store</title>
+        <meta name="description" content="Shop electronics, fashion, and more at unbeatable prices. Fast shipping & secure checkout!" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="robots" content="index, follow" />
+        <meta name="keywords" content="online shopping, electronics, fashion, home, e-commerce, buy online, deals, [Your Niche]" />
+        <meta name="author" content="Ahmed Store" />
+        <meta property="og:title" content="Ahmed Store - Online Store" />
+        <meta property="og:description" content="Top deals on gadgets, clothes, and more!" />
+        <meta property="og:type" content="website" />
+        <meta property="og:image" content="https://react-ecommerce15.netlify.app/assets/logo-_i2k98rh.png" />
+        <meta property="og:url" content="https://react-ecommerce15.netlify.app/" />
       </Helmet>
       <main className="mt-37">
         <section className="heading h-96 absolute top-11 lg:top-2 left-0 right-0 flex flex-col justify-center items-center gap-3" style={{ background: `url(${Images.contactImgs.c1}) no-repeat center / cover` }}>

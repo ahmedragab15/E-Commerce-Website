@@ -6,6 +6,7 @@ const NotFound = () => {
     <>
       <Helmet>
         <title>Not Found | E-commerce Store</title>
+        <meta name="description" content="Your saved items in one place." />
       </Helmet>
       <main className="flex justify-evenly items-center py-20 mt-37">
         <div className="title">

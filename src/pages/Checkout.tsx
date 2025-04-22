@@ -36,6 +36,7 @@ const Checkout = () => {
     <>
       <Helmet>
         <title>Checkout | E-commerce Store</title>
+        <meta name="robots" content="noindex, nofollow" />
       </Helmet>
       <main className="mt-37">
         <div className="container mx-auto my-12 py-8 px-10 xl:px-18 bg-neutral-100">
