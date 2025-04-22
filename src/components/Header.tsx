@@ -137,12 +137,33 @@ const Header = () => {
             <SquiredButton className="rounded-md bg-white hover:bg-gray-100 border-none outline-none py-3 px-10 w-fit mx-auto text-md font-semibold ">Search </SquiredButton>
           </div>
           <div className="nav-icons flex text-white space-x-3 self-center order-1 lg:flex-1/12 lg:justify-end mb-2 lg:mb-0">
-            <CircleHelp size={33} className="cursor-pointer hover:scale-110 duration-200" />
-            <Link to="/cart" className="relative">
+            <CircleHelp
+              size={33}
+              className="cursor-pointer hover:scale-110 duration-200"
+              onClick={() => {
+                setOpenSideNav(false);
+                transitionHandler();
+              }}
+            />
+            <Link
+              to="/cart"
+              className="relative"
+              onClick={() => {
+                setOpenSideNav(false);
+                transitionHandler();
+              }}
+            >
               <ShoppingCart size={33} className="cursor-pointer hover:scale-110 duration-200" />
               <span className="cart-count absolute top-0 right-0 bg-red-500 rounded-full pointer-events-none w-5 h-5 flex justify-center items-center">{cartItems?.length}</span>
             </Link>
-            <Link to="/wishlist" className="relative">
+            <Link
+              to="/wishlist"
+              className="relative"
+              onClick={() => {
+                setOpenSideNav(false);
+                transitionHandler();
+              }}
+            >
               <Heart size={33} className="cursor-pointer hover:scale-110 duration-200" />
               <span className="cart-count absolute top-0 right-0 bg-red-500 rounded-full pointer-events-none w-5 h-5 flex justify-center items-center">{whishListItems?.length}</span>
             </Link>

@@ -1,30 +1,24 @@
 import { Star } from "lucide-react";
+import { ProductList } from "../data";
+import { MouseEventHandler } from "react";
 
-const FilterAside = ({ className }: { className: string }) => {
+
+const FilterAside = ({ className, onClick }: { className: string; onClick: MouseEventHandler<HTMLInputElement> }) => {
+  const renderInpCategories = [...new Set(ProductList.map((product) => product.category))].map((category, idx) => (
+    <div key={idx} className="optionspace-x-2 ml-2 my-2">
+      <input type="checkbox" name={category} id={category} value={category} onClick={onClick} />
+      <label className="text-gray-600 ml-1" htmlFor={category}>
+        {category}
+      </label>
+    </div>
+  ));
   return (
     <aside className={` bg-gray-100 py-5 px-6 max-w-2/3 mx-auto sm:max-w-full sm h-fit mb-4 rounded-md ${className}`}>
       <div className="options flex flex-row md:flex-col flex-wrap gap-4 items-center md:items-start">
         <h3 className="text-lg font-medium">Category</h3>
         <div className="option-box sm:mb-4 w-full">
           <h4 className="mb-2 text-md ">Fashion</h4>
-          <div className="option space-x-2 ml-4 my-2">
-            <input type="checkbox" name="category" id="women" value="women" />
-            <label className="text-gray-600" htmlFor="women">
-              Women
-            </label>
-          </div>
-          <div className="option space-x-2 ml-4 my-2">
-            <input type="checkbox" name="category" id="men" value="men" />
-            <label className="text-gray-600" htmlFor="men">
-              Men
-            </label>
-          </div>
-          <div className="option space-x-2 ml-4 my-2">
-            <input type="checkbox" name="category" id="kids" value="kids" />
-            <label className="text-gray-600" htmlFor="kids">
-              Kids
-            </label>
-          </div>
+          {renderInpCategories}
         </div>
         <div className="option-box sm:mb-4 w-full">
           <div className="mb-2 text-md flex justify-between">
