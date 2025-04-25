@@ -1,5 +1,5 @@
 import { Heart, Trash2 } from "lucide-react";
-import { useContext } from "react";
+import { useContext, useMemo } from "react";
 import { CartContext } from "../components/context/CartContext";
 import toast from "react-hot-toast";
 import { Helmet } from "react-helmet";
@@ -21,7 +21,6 @@ const Cart = () => {
   };
 
   const handleQuantityChange = (id: number, quantity: number) => {
-    console.log("handleQuantityChange", id, quantity);
     const existingCartItemIndex = cartItems.findIndex((item: { id: number }) => item.id === id);
     if (existingCartItemIndex !== -1) {
       if (quantity <= 0) {
@@ -33,6 +32,10 @@ const Cart = () => {
       }
     }
   };
+
+  const totalAmount = useMemo(() => {
+    return cartItems.map((item: { price: number; quantity: number }) => item.price * item.quantity).reduce((a: number, b: number) => a + b, 0);
+  }, [cartItems]);
 
   return (
     <>
@@ -114,13 +117,7 @@ const Cart = () => {
           <div className="confirmation text-right border-t border-gray-200 py-6 px-4 space-y-3 mt-16">
             <h3 className="text-2xl font-medium">
               Total Amount:
-              <span className="ml-6">
-                $
-                {cartItems
-                  .map((item: { price: number; quantity: number }) => item.price * item.quantity)
-                  .reduce((a: number, b: number) => a + b, 0)
-                  .toLocaleString()}
-              </span>
+              <span className="ml-6">${totalAmount.toLocaleString()}</span>
             </h3>
 
             <span className="block text-sm mb-8">Delivery fee is not included</span>

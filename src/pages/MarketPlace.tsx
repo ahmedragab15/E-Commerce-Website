@@ -5,14 +5,15 @@ import ProductCard from "../components/ProductCard";
 import { SliderLeft, SliderRight } from "../components/swiper/Slider";
 import { Helmet } from "react-helmet";
 import Images from "../components/StaticImages";
+import { Link } from "react-router-dom";
 
 const MarketPlace = () => {
   //*  Render     */
-  const renderProducts = ProductList.map((product) => (
-    <SwiperSlide>
-      <ProductCard id={product.id} key={product.id} title={product.title} image={product.image} category={product.category} price={product.price} discountPercentage={product.discountPercentage} rating={product.rating} product={product} />
-    </SwiperSlide>
-  ));
+
+  const categories = [...new Set(ProductList.map((product) => product.category))];
+
+  const banners = [Images.banners.bb1, Images.banners.bb2, Images.banners.bb3, Images.banners.bb4, Images.banners.bb5];
+
   return (
     <>
       <Helmet>
@@ -30,24 +31,30 @@ const MarketPlace = () => {
       </Helmet>
       <main className="py-10 mt-37">
         <div className="container mx-auto">
-          <BigBanner src={Images.banners.bb1} />
-          <SliderRight>{renderProducts.slice(40)}</SliderRight>
-          <BigBanner src={Images.banners.bb2} />
-          <SliderLeft>{renderProducts.slice(60)}</SliderLeft>
-          <BigBanner src={Images.banners.bb4} />
-          <SliderRight>{renderProducts.slice(20)}</SliderRight>
-          <BigBanner src={Images.banners.bb3} />
-          <SliderLeft>{renderProducts.slice(10)}</SliderLeft>
-          <BigBanner src={Images.banners.bb5} />
-          <SliderRight>{renderProducts}</SliderRight>
-          <BigBanner src={Images.banners.bb1} />
-          <SliderLeft>{renderProducts.slice(70)}</SliderLeft>
-          <BigBanner src={Images.banners.bb3} />
-          <SliderRight>{renderProducts.slice(30)}</SliderRight>
-          <BigBanner src={Images.banners.bb2} />
-          <SliderLeft>{renderProducts.slice(50)}</SliderLeft>
-          <BigBanner src={Images.banners.bb4} />
-          <SliderRight>{renderProducts.slice(16)}</SliderRight>
+          {categories.map((category, index) => {
+            const categoryProducts = ProductList.filter((product) => product.category === category);
+            const sliderItems = categoryProducts.map((product) => (
+              <SwiperSlide key={product.id}>
+                <ProductCard id={product.id} title={product.title} image={product.image} category={product.category} price={product.price} discountPercentage={product.discountPercentage} rating={product.rating} product={product} />
+              </SwiperSlide>
+            ));
+
+            const banner = banners[index % banners.length];
+            const SliderComponent = index % 2 === 0 ? SliderRight : SliderLeft;
+
+            return (
+              <section key={category} className="space-y-6">
+                <BigBanner src={banner} />
+                <div className="flex justify-between">
+                  <h2 className="text-2xl font-bold text-center capitalize">{category}</h2>
+                  <Link to={`/shop?category=${encodeURIComponent(category)}`} className="text-orange-500 hover:underline">
+                    View More
+                  </Link>
+                </div>
+                <SliderComponent>{sliderItems}</SliderComponent>
+              </section>
+            );
+          })}
         </div>
       </main>
     </>

@@ -5,34 +5,61 @@ import Pagination from "../components/UI/Pagination";
 import { ProductList } from "../data";
 import { BigBanner, VerticalBanner } from "../components/UI/Banner";
 import Images from "../components/StaticImages";
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useMemo, useState } from "react";
+import { useLocation } from "react-router-dom";
+
+const PRODUCTS_PER_PAGE = 16;
 
 const Shop = () => {
-  const [filteredProducts, setFilteredProducts] = useState(ProductList.slice(0, 48));
+  const [filteredProducts, setFilteredProducts] = useState(ProductList);
   const [selectedCategories, setSelectedCategories] = useState<string[]>([]);
+  const [currentPage, setCurrentPage] = useState(1);
 
-  const handleFilter = (e: React.MouseEvent<HTMLInputElement>): void => {
+  const location = useLocation();
+  const searchParams = new URLSearchParams(location.search);
+  const defaultCategory = searchParams.get("category");
+
+  const handleFilter = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
     const target = e.target as HTMLInputElement;
     const category = target.value;
     const isChecked = target.checked;
-    if (isChecked) {
-      setSelectedCategories([...selectedCategories, category]);
-    } else {
-      setSelectedCategories(selectedCategories.filter((cat) => cat !== category));
-    }
-  };
 
-  useEffect(() => {
-    if (selectedCategories.length === 0) {
-      setFilteredProducts(ProductList.slice(40, 72));
-    } else {
-      const filtered = ProductList.filter((product) => selectedCategories.includes(product.category));
-      setFilteredProducts(filtered);
-    }
-  }, [selectedCategories]);
+    setSelectedCategories((prev) => (isChecked ? [...prev, category] : prev.filter((cat) => cat !== category)));
+
+    setCurrentPage(1);
+  }, []);
 
 
-  const renderProducts = filteredProducts.map((product) => <ProductCard id={product.id} key={product.id} title={product.title} image={product.image} category={product.category} price={product.price} discountPercentage={product.discountPercentage} rating={product.rating} product={product} />);
+  // useEffect(() => {
+  //   setFilteredProducts(selectedCategories.length === 0 ? ProductList : ProductList.filter((product) => selectedCategories.includes(product.category)));
+  // }, [selectedCategories]);
+
+useEffect(() => {
+  if (defaultCategory) {
+    setSelectedCategories([defaultCategory]);
+  }
+}, [defaultCategory]);
+
+useEffect(() => {
+  if (selectedCategories.length === 0) {
+    setFilteredProducts(ProductList);
+  } else {
+    const filtered = ProductList.filter((product) => selectedCategories.includes(product.category));
+    setFilteredProducts(filtered);
+  }
+}, [selectedCategories]);
+
+
+  const totalPages = Math.ceil(filteredProducts.length / PRODUCTS_PER_PAGE);
+
+    const paginatedProducts = useMemo(() => {
+      const startIndex = (currentPage - 1) * PRODUCTS_PER_PAGE;
+      return filteredProducts.slice(startIndex, startIndex + PRODUCTS_PER_PAGE);
+    }, [filteredProducts, currentPage]);
+
+  const renderProducts = useMemo(() => {
+    return paginatedProducts.map((product) => <ProductCard key={product.id} id={product.id} title={product.title} image={product.image} category={product.category} price={product.price} discountPercentage={product.discountPercentage} rating={product.rating} product={product} />);
+  }, [paginatedProducts]);
 
   return (
     <>
@@ -53,15 +80,12 @@ const Shop = () => {
         <BigBanner src={Images.banners.bb3} />
         <div className="container mx-auto flex flex-col sm:flex-row justify-evenly items-start xl:gap-4">
           <div className="flex-1/6">
-            <FilterAside className="flex-row sm:flex-col" onClick={handleFilter} />
-            <VerticalBanner src={Images.banners.bbv} />
-            <VerticalBanner src={Images.banners.bbv} />
-            <VerticalBanner src={Images.banners.bbv} />
+            <FilterAside className="flex-row sm:flex-col" onChange={handleFilter} selectedCategories={selectedCategories} />
             <VerticalBanner src={Images.banners.bbv} />
           </div>
           <div className="content flex flex-wrap flex-3/6 md:flex-4/6 xl:flex-5/6 gap-8 justify-center items-start">{renderProducts}</div>
         </div>
-        <Pagination />
+        <Pagination currentPage={currentPage} totalPages={totalPages} onPageChange={(page) => setCurrentPage(page)} />
       </main>
     </>
   );

@@ -1,7 +1,6 @@
 import { SwiperSlide } from "swiper/react";
 import CategoryAside from "../components/CategoryAside";
 import Images from "../components/StaticImages";
-import Pagination from "../components/UI/Pagination";
 import ProductCard from "../components/ProductCard";
 import ProductsContainer from "../components/ProductsContainer";
 import { SliderRight, SliderLeft, HeroSlider } from "../components/swiper/Slider";
@@ -98,7 +97,6 @@ const Home = () => {
         <ProductsContainer containerTitle="Top Checked product">
           <SliderRight>{renderProducts.slice(38)}</SliderRight>
         </ProductsContainer>
-        <Pagination />
       </main>
     </>
   );

@@ -1,12 +1,17 @@
 import { Star } from "lucide-react";
 import { ProductList } from "../data";
-import { MouseEventHandler } from "react";
 
+type Props = {
+  className: string;
+  onChange: React.ChangeEventHandler<HTMLInputElement>;
+  selectedCategories: string[];
+};
 
-const FilterAside = ({ className, onClick }: { className: string; onClick: MouseEventHandler<HTMLInputElement> }) => {
-  const renderInpCategories = [...new Set(ProductList.map((product) => product.category))].map((category, idx) => (
+const FilterAside = ({ className, onChange, selectedCategories }: Props) => {
+  const uniqueCategories = [...new Set(ProductList.map((product) => product.category))];
+  const renderInpCategories = uniqueCategories.map((category, idx) => (
     <div key={idx} className="optionspace-x-2 ml-2 my-2">
-      <input className="cursor-pointer" type="checkbox" name={category} id={category} value={category} onClick={onClick} />
+      <input className="cursor-pointer" type="checkbox" name={category} id={category} value={category} onChange={onChange} checked={selectedCategories.includes(category)} readOnly />
       <label className="text-gray-600 ml-1 cursor-pointer" htmlFor={category}>
         {category}
       </label>
@@ -17,7 +22,6 @@ const FilterAside = ({ className, onClick }: { className: string; onClick: Mouse
       <div className="options flex flex-row md:flex-col flex-wrap gap-4 items-center md:items-start">
         <h3 className="text-lg font-medium">Category</h3>
         <div className="option-box sm:mb-4 w-full">
-          <h4 className="mb-2 text-md ">Fashion</h4>
           {renderInpCategories}
         </div>
         <div className="option-box sm:mb-4 w-full">
