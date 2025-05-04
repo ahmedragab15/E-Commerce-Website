@@ -3,9 +3,10 @@ import { CartButton } from "./UI/Button";
 import toast from "react-hot-toast";
 import { IProduct } from "../interfaces";
 import { useContext } from "react";
-import { CartContext } from "./context/CartContext";
+import { CartContext } from "../context/CartContext";
 import { Link } from "react-router-dom";
-import { WhishListContext } from "./context/WhishlistContext";
+import { WhishListContext } from "../context/WhishlistContext";
+import { generateSlug } from "../utils";
 
 interface Iprops extends IProduct {
   product: IProduct;
@@ -14,8 +15,6 @@ interface Iprops extends IProduct {
 }
 
 const ProductCard = ({ id, image, title, category, price, discountPercentage, imageBGColor = "bg-white", productCardBGColor = "bg-gray-100", rating, product }: Iprops) => {
-  /* State */
-
   const { addCartItem } = useContext(CartContext);
   const { addWhishListItem } = useContext(WhishListContext);
 
@@ -36,17 +35,19 @@ const ProductCard = ({ id, image, title, category, price, discountPercentage, im
     toast.success("Item added to whishlist ❤");
   };
 
+
+
   return (
     <>
       <div className={`product-card w-2xs drop-shadow-lg ${productCardBGColor} p-4 pb-2 rounded-lg`} key={id}>
-        <Link to={`/product/${id}`}>
+        <Link to={`/product/${generateSlug(product.title)}`}>
           <div className="img-box">
             <img src={image} className={`${imageBGColor} rounded-lg w-full h-58 object-fit cursor-pointer`} alt={title} />
           </div>
         </Link>
         <div className="product-details">
           <div className="flex flex-col lg:flex-row justify-between pt-2 gap-2">
-            <Link to={`/product/${id}`}>
+            <Link to={`/product/${generateSlug(product.title)}`}>
               <h2 className="font-medium line-clamp-1" title={title}>
                 {title}
               </h2>

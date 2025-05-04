@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import Images from "../components/StaticImages";
 import { Helmet } from "react-helmet";
 import { useContext } from "react";
-import { CartContext } from "../components/context/CartContext";
+import { CartContext } from "../context/CartContext";
 import toast from "react-hot-toast";
 
 const Checkout = () => {

@@ -29,11 +29,6 @@ const Shop = () => {
     setCurrentPage(1);
   }, []);
 
-
-  // useEffect(() => {
-  //   setFilteredProducts(selectedCategories.length === 0 ? ProductList : ProductList.filter((product) => selectedCategories.includes(product.category)));
-  // }, [selectedCategories]);
-
 useEffect(() => {
   if (defaultCategory) {
     setSelectedCategories([defaultCategory]);
@@ -41,12 +36,7 @@ useEffect(() => {
 }, [defaultCategory]);
 
 useEffect(() => {
-  if (selectedCategories.length === 0) {
-    setFilteredProducts(ProductList);
-  } else {
-    const filtered = ProductList.filter((product) => selectedCategories.includes(product.category));
-    setFilteredProducts(filtered);
-  }
+  setFilteredProducts(selectedCategories.length === 0 ? ProductList : ProductList.filter((product) => selectedCategories.includes(product.category)));
 }, [selectedCategories]);
 
 

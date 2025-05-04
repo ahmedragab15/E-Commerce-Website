@@ -8,8 +8,6 @@ import Images from "../components/StaticImages";
 import { Link } from "react-router-dom";
 
 const MarketPlace = () => {
-  //*  Render     */
-
   const categories = [...new Set(ProductList.map((product) => product.category))];
 
   const banners = [Images.banners.bb1, Images.banners.bb2, Images.banners.bb3, Images.banners.bb4, Images.banners.bb5];
@@ -47,7 +45,7 @@ const MarketPlace = () => {
                 <BigBanner src={banner} />
                 <div className="flex justify-between">
                   <h2 className="text-2xl font-bold text-center capitalize">{category}</h2>
-                  <Link to={`/shop?category=${encodeURIComponent(category)}`} className="text-orange-500 hover:underline">
+                  <Link to={`/shop?category=${encodeURIComponent(category)}`} className="text-orange-400 hover:underline">
                     View More
                   </Link>
                 </div>

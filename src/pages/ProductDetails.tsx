@@ -1,17 +1,17 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 import { ChevronRight, CircleCheckBig, Facebook, Instagram, ShoppingCart, Star, Twitter } from "lucide-react";
 import { useContext, useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { ProductList } from "../data";
 import { IProduct } from "../interfaces";
-import { CartContext } from "../components/context/CartContext";
+import { CartContext } from "../context/CartContext";
 import toast from "react-hot-toast";
 import { Helmet } from "react-helmet";
 import NotFound from "./NotFound";
+import { generateSlug } from "../utils";
 
 const ProductDetails = () => {
-  const { id } = useParams();
-  const [product, setProduct] = useState<IProduct | undefined | any>(undefined);
+  const { slug } = useParams();
+  const [product, setProduct] = useState<IProduct | undefined>(undefined);
 
   const { addCartItem } = useContext(CartContext);
 
@@ -20,10 +20,13 @@ const ProductDetails = () => {
     toast.success("Item added to cart");
   };
 
+
   useEffect(() => {
-    const productData = ProductList.find((product: { id: number }) => product.id === Number(id));
-    setProduct(productData);
-  }, [id]);
+    const productData = ProductList.find((p) => generateSlug(p.title) === slug);
+    if (productData) {
+      setProduct(productData);
+    }
+  }, [slug]);
 
   return (
     <>
@@ -46,13 +49,13 @@ const ProductDetails = () => {
             <div className="product-info bg-gray-100 w-10/12 min-h-[660px] py-5 px-4 flex gap-8">
               <div className="images space-y-4 w-1/2">
                 <div className="main-img-box">
-                  <img src={product?.image} alt={product?.title} className="main-img w-full h-[480px] object-contain" />
+                  <img src={product.image} alt={product.title} className="main-img w-full h-[480px] object-contain" />
                 </div>
                 <div className="mini-imgs-box flex justify-center gap-8">
-                  <img src={product?.image} alt={product?.title} className="mini-imgs w-20 h-20 bg-white" />
-                  <img src={product?.image} alt={product?.title} className="mini-imgs w-20 h-20 bg-white" />
-                  <img src={product?.image} alt={product?.title} className="mini-imgs w-20 h-20 bg-white" />
-                  <img src={product?.image} alt={product?.title} className="mini-imgs w-20 h-20 bg-white" />
+                  <img src={product.image} alt={product.title} className="mini-imgs w-20 h-20 bg-white" />
+                  <img src={product.image} alt={product.title} className="mini-imgs w-20 h-20 bg-white" />
+                  <img src={product.image} alt={product.title} className="mini-imgs w-20 h-20 bg-white" />
+                  <img src={product.image} alt={product.title} className="mini-imgs w-20 h-20 bg-white" />
                 </div>
                 <div className="share flex justify-between">
                   <h3 className="text-md uppercase font-medium">share products:</h3>
@@ -64,24 +67,24 @@ const ProductDetails = () => {
                 </div>
               </div>
               <div className="info w-1/2 space-y-4 h-full flex flex-col">
-                <h3 className="product-title text-lg font-medium">{product?.title || "Ahmed"}</h3>
-                <p className="product-description text-sm text-neutral-600 leading-4">{product?.description}</p>
+                <h3 className="product-title text-lg font-medium">{product.title}</h3>
+                <p className="product-description text-sm text-neutral-600 leading-4">{product.description}</p>
                 <div className="product-rate flex gap-1 py-4">
-                  {Array.from({ length: Math.floor(product?.rating.stars) }, (_, index) => (
+                  {Array.from({ length: Math.floor(product.rating.stars) }, (_, index) => (
                     <Star key={index} className="text-orange-300" fill="#FFA621" size={20} />
                   ))}
-                  {Array.from({ length: 5 - Math.floor(product?.rating.stars) }, (_, index) => (
+                  {Array.from({ length: 5 - Math.floor(product.rating.stars) }, (_, index) => (
                     <Star key={index} className="text-gray-300" fill="#A5A5A5" size={20} />
                   ))}
                 </div>
                 <div className="price-info pt-8 border-t-1 border-gray-300">
-                  <strong className="product-price text-2xl">${product?.price}</strong>
+                  <strong className="product-price text-2xl">${product.price}</strong>
                   <div className="product-discount space-x-4">
-                    <span className="before-discount text-gray-600 font-medium line-through">${(+product?.price * (+product?.discountPercentage / 100) + product?.price).toFixed(2)}</span>
-                    <span className="discount-percentage text-xs bg-green-100 text-orange-400 font-medium p-0.5">-{product?.discountPercentage}%</span>
+                    <span className="before-discount text-gray-600 font-medium line-through">${(+product.price * (+product.discountPercentage / 100) + product.price).toFixed(2)}</span>
+                    <span className="discount-percentage text-xs bg-green-100 text-orange-400 font-medium p-0.5">-{product.discountPercentage}%</span>
                   </div>
                 </div>
-                <span className="product-category block my-2 text-neutral-600">{product?.category}</span>
+                <span className="product-category block my-2 text-neutral-600">{product.category}</span>
                 <button className="font-medium w-full flex items-center justify-center text-white border bg-orange-400 hover:bg-orange-500 cursor-pointer py-3 px-8 mt-auto rounded-sm gap-4  text-center" onClick={handleAddToCart}>
                   <ShoppingCart /> Add to cart
                 </button>

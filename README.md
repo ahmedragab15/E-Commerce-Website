@@ -17,6 +17,8 @@ A fully dynamic and responsive **E-Commerce Store** built using **React**, **Typ
 ✅ **Add / Remove Products to Cart**  
 ✅ **Add / Remove Products to Wishlist**  
 ✅ **Dynamic Product Details Page**  
+✅ **Search for a product with suggests** 
+✅ **Filter the Products** 
 ✅ **Login & Signup Authentication UI**  
 ✅ **Smooth Page Transitions between routes**  
 ✅ **Animated UI Components**  

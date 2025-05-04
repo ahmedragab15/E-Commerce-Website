@@ -1,25 +1,22 @@
 import { Trash2 } from "lucide-react";
 import { Helmet } from "react-helmet";
-import { WhishListContext } from "../components/context/WhishlistContext";
+import { WhishListContext } from "../context/WhishlistContext";
 import { useContext } from "react";
 import toast from "react-hot-toast";
-import { CartContext } from "../components/context/CartContext";
-
+import { CartContext } from "../context/CartContext";
 
 const WishList = () => {
-
-    const { whishListItems, removeWhishListItem } = useContext(WhishListContext);
+  const { whishListItems, removeWhishListItem } = useContext(WhishListContext);
   const { addCartItem } = useContext(CartContext);
   const handleRemoveFromWhishList = (id: number) => {
     removeWhishListItem({ id });
     toast.success("Item removed from whishlist 🗑");
   };
 
-    const handleAddToCart = (product: { id: number; title: string; image: string; category: string; price: number; quantity: number; total: number; }) => {
-      addCartItem(product);
-      toast.success("Item added to cart 🛒");
-    };
-
+  const handleAddToCart = (product: { id: number; title: string; image: string; category: string; price: number; quantity: number; total: number }) => {
+    addCartItem(product);
+    toast.success("Item added to cart 🛒");
+  };
 
   return (
     <>

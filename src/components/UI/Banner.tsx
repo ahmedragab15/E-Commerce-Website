@@ -35,13 +35,12 @@ export const SmallBanner = ({ src, percentage }: Iprop) => {
   );
 };
 
-export const VerticalBanner = ({src}:Iprop)=>{
+export const VerticalBanner = ({ src }: Iprop) => {
   return (
     <Link to="/shop">
-      <img src={src} alt="Vertical Banner" className="Banner hidden sm:block w-full my-6 object-contain mb-6"/>
+      <img src={src} alt="Vertical Banner" className="Banner hidden sm:block w-full my-6 object-contain mb-6" />
     </Link>
   );
-}
-
+};
 
 //         <span className="Banner w-11/12 h-[200px] mx-auto object-cover mb-6 bg-gray-100 text-gray-500 text-3xl flex justify-center items-center">Banner</span>

@@ -1,24 +1,48 @@
-import { Link, NavLink } from "react-router-dom";
+import { Link, NavLink, useNavigate } from "react-router-dom";
 import { RoundedButton, SquiredButton } from "./UI/Button";
 import { CircleHelp, Heart, Search, ShoppingCart } from "lucide-react";
 import Images from "./StaticImages";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import PageTransition from "./PageTransition";
 import { useContext } from "react";
-import { CartContext } from "./context/CartContext";
-import { WhishListContext } from "./context/WhishlistContext";
+import { CartContext } from "../context/CartContext";
+import { WhishListContext } from "../context/WhishlistContext";
+import { ProductList } from "../data";
+import { IProduct } from "../interfaces";
+import { generateSlug } from "../utils";
 
 const Header = () => {
   const [openSideNav, setOpenSideNav] = useState(false);
   const [isAnimating, setIsAnimating] = useState(false);
+  const [searchQuery, setSearchQuery] = useState("");
+  const [filteredResults, setFilteredResults] = useState<IProduct[]>([]);
   const { cartItems } = useContext(CartContext);
   const { whishListItems } = useContext(WhishListContext);
+  const navigate = useNavigate();
 
   const transitionHandler = () => {
     setIsAnimating(!isAnimating);
     setTimeout(() => {
       setIsAnimating(false);
     }, 600);
+  };
+
+  useEffect(() => {
+    if (searchQuery === "") {
+      setFilteredResults([]);
+    } else {
+      const results = ProductList.filter((product) => product.title.toLowerCase().includes(searchQuery.toLowerCase()));
+      setFilteredResults(results);
+    }
+  }, [searchQuery]);
+
+  const handleSearch = () => {
+    if (filteredResults.length > 0) {
+      const firstProduct = filteredResults[0];
+      const productSlug = generateSlug(firstProduct.title);
+      navigate(`/product/${productSlug}`);
+    }
+    setSearchQuery("");
   };
 
   return (
@@ -98,7 +122,7 @@ const Header = () => {
                 transitionHandler();
               }}
             >
-              <RoundedButton className=" text-orange-500 bg-white border-white hover:bg-transparent hover:text-white">Sign Up</RoundedButton>
+              <RoundedButton className=" text-orange-400 bg-white border-white hover:bg-transparent hover:text-white">Sign Up</RoundedButton>
             </Link>
             <Link
               to="/login"
@@ -131,11 +155,29 @@ const Header = () => {
           </div>
           <div className="nav-search flex flex-row gap-2 lg:flex-1/3 order-2 lg:order-1 ">
             <div className="search-box bg-white flex items-center p-3 space-x-5 rounded-md  w-full">
+
               <Search className="border-none outline-none cursor-pointer hover:scale-110 duration-200" size={30} />
-              <input type="text" className="border-none outline-none w-full h-full" placeholder="Look for anything you want" />
+              <input type="text" className="border-none outline-none w-full h-full" placeholder="Look for anything you want" value={searchQuery} onChange={(e) => setSearchQuery(e.target.value)} onKeyUp={(e) => e.key === "Enter" && handleSearch()} />
             </div>
-            <SquiredButton className="rounded-md bg-white hover:bg-gray-100 border-none outline-none py-3 px-10 w-fit mx-auto text-md font-semibold ">Search </SquiredButton>
+            {filteredResults.length > 0 && (
+              <div className="suggestions bg-white absolute top-full left-0 right-0 max-h-60 overflow-auto border rounded-md shadow-lg z-50">
+                {filteredResults.map((product) => (
+                  <Link
+                    key={product.id}
+                    to={`/product/${generateSlug(product.title)}`}
+                    className="suggestion-item p-2 hover:bg-gray-200 cursor-pointer block w-full h-10"
+                    onClick={() => setSearchQuery("")}
+                  >
+                    {product.title}
+                  </Link>
+                ))}
+              </div>
+            )}
+            <SquiredButton className="rounded-md bg-white hover:bg-gray-100 border-none outline-none py-3 px-10 w-fit mx-auto text-md font-semibold " onClick={handleSearch}>
+              Search
+            </SquiredButton>
           </div>
+
           <div className="nav-icons flex text-white space-x-3 self-center order-1 lg:flex-1/12 lg:justify-end mb-2 lg:mb-0">
             <CircleHelp
               size={33}

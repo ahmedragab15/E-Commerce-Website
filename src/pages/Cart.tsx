@@ -1,10 +1,10 @@
 import { Heart, Trash2 } from "lucide-react";
 import { useContext, useMemo } from "react";
-import { CartContext } from "../components/context/CartContext";
+import { CartContext } from "../context/CartContext";
 import toast from "react-hot-toast";
 import { Helmet } from "react-helmet";
 import { Link } from "react-router-dom";
-import { WhishListContext } from "../components/context/WhishlistContext";
+import { WhishListContext } from "../context/WhishlistContext";
 
 const Cart = () => {
   const { cartItems, removeCartItem, setCartItems } = useContext(CartContext);

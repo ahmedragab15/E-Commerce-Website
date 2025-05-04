@@ -45,7 +45,7 @@ const Home = () => {
           </div>
           <div className="center lg:col-span-3 bg-gray-100 pt-10 pl-6">
             <div className="lg:justify-self-end pr-10 mb-6">
-              <h2 className="text-3xl font-medium">Buy Quality & Save Money </h2>
+              <h2 className="text-3xl font-medium text-avocado">Buy Quality & Save Money </h2>
               <p className="lg:text-center">at the same time to enjoy your shopping</p>
             </div>
             <div className="main img-box max-w-[80vw]">
