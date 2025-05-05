@@ -2,11 +2,10 @@ import { Heart, Star } from "lucide-react";
 import { CartButton } from "./UI/Button";
 import toast from "react-hot-toast";
 import { IProduct } from "../interfaces";
-import { useContext } from "react";
-import { CartContext } from "../context/CartContext";
 import { Link } from "react-router-dom";
-import { WhishListContext } from "../context/WhishlistContext";
 import { generateSlug } from "../utils";
+import { useCart } from "../Hooks/useCart";
+import { useWhishList } from "../Hooks/useWishList";
 
 interface Iprops extends IProduct {
   product: IProduct;
@@ -15,11 +14,14 @@ interface Iprops extends IProduct {
 }
 
 const ProductCard = ({ id, image, title, category, price, discountPercentage, imageBGColor = "bg-white", productCardBGColor = "bg-gray-100", rating, product }: Iprops) => {
-  const { addCartItem } = useContext(CartContext);
-  const { addWhishListItem } = useContext(WhishListContext);
+  const { addCartItem } = useCart();
+  const { addWhishListItem } = useWhishList();
 
   const handleAddToCart = () => {
-    addCartItem(product);
+    addCartItem({
+      ...product,
+      quantity:1
+    });
     toast.success("Item added to cart 🛒");
   };
 

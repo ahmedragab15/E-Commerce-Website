@@ -1,18 +1,22 @@
 import { createContext, ReactNode, useEffect, useState } from "react";
-import { IProduct } from "../interfaces";
 
-interface CartItem extends IProduct {
+interface CartItem {
+  id: number;
+  title: string;
+  image: string;
+  category: string;
+  price: number;
   quantity: number;
 }
 
 interface IProps {
   cartItems: CartItem[];
   addCartItem: (item: CartItem) => void;
-  removeCartItem: (item: CartItem) => void;
+  removeCartItem: (id: number) => void;
+  setCartItems: React.Dispatch<React.SetStateAction<CartItem[]>>;
 }
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-const CartContext = createContext<IProps | any>(null);
+const CartContext = createContext<IProps | undefined>(undefined);
 
 const CartProvider = ({ children }: { children: ReactNode }) => {
   const [cartItems, setCartItems] = useState<CartItem[]>([]);
@@ -37,11 +41,12 @@ const CartProvider = ({ children }: { children: ReactNode }) => {
     }
   };
 
-  const removeCartItem = (item: CartItem) => {
-    setCartItems((prevItems) => prevItems.filter((i) => i.id !== item.id));
+  const removeCartItem = (id: number) => {
+    setCartItems((prevItems) => prevItems.filter((i) => i.id !== id));
   };
 
   return <CartContext.Provider value={{ cartItems, addCartItem, removeCartItem, setCartItems }}>{children}</CartContext.Provider>;
 };
 
 export { CartProvider, CartContext };
+

@@ -1,20 +1,26 @@
 import { Trash2 } from "lucide-react";
 import { Helmet } from "react-helmet";
-import { WhishListContext } from "../context/WhishlistContext";
-import { useContext } from "react";
 import toast from "react-hot-toast";
-import { CartContext } from "../context/CartContext";
+import { useCart } from "../Hooks/useCart";
+import { useWhishList } from "../Hooks/useWishList";
 
 const WishList = () => {
-  const { whishListItems, removeWhishListItem } = useContext(WhishListContext);
-  const { addCartItem } = useContext(CartContext);
+  const { whishListItems, removeWhishListItem } = useWhishList();
+  const { addCartItem } = useCart();
   const handleRemoveFromWhishList = (id: number) => {
-    removeWhishListItem({ id });
+    removeWhishListItem( id );
     toast.success("Item removed from whishlist 🗑");
   };
 
-  const handleAddToCart = (product: { id: number; title: string; image: string; category: string; price: number; quantity: number; total: number }) => {
-    addCartItem(product);
+  const handleAddToCart = (product: { id: number; title: string; image: string; category: string; price: number }) => {
+    if (!product) return;
+
+    const cartItem = {
+      ...product,
+      quantity: 1,
+      total: product.price * 1,
+    };
+    addCartItem(cartItem);
     toast.success("Item added to cart 🛒");
   };
 
@@ -33,7 +39,7 @@ const WishList = () => {
             <span className="font-medium">Category</span>
           </div>
           <div className="list flex md:flex-col flex-row justify-center gap-8 md:gap-0 md:space-y-4 space-x-4  flex-wrap">
-            {whishListItems.map((item: { id: number; title: string; image: string; category: string; price: number; quantity: number; total: number }, idx: number) => (
+            {whishListItems.map((item, idx: number) => (
               <div key={idx} className="product flex flex-col md:flex-row justify-evenly items-center gap-2 lg:gap-8 border-y border-gray-200 py-2">
                 <button onClick={() => handleRemoveFromWhishList(item.id)}>
                   <Trash2 className="text-red-400 hover:text-red-500 cursor-pointer" />

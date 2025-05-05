@@ -1,21 +1,21 @@
 import { Heart, Trash2 } from "lucide-react";
-import { useContext, useMemo } from "react";
-import { CartContext } from "../context/CartContext";
+import { useMemo } from "react";
 import toast from "react-hot-toast";
 import { Helmet } from "react-helmet";
 import { Link } from "react-router-dom";
-import { WhishListContext } from "../context/WhishlistContext";
+import { useCart } from "../Hooks/useCart";
+import { useWhishList } from "../Hooks/useWishList";
 
 const Cart = () => {
-  const { cartItems, removeCartItem, setCartItems } = useContext(CartContext);
-  const { addWhishListItem } = useContext(WhishListContext);
+  const { cartItems, removeCartItem, setCartItems } = useCart();
+  const { addWhishListItem } = useWhishList();
 
   const handleRemoveFromCart = (id: number) => {
-    removeCartItem({ id });
+    removeCartItem( id );
     toast.success("Item removed from cart 🗑");
   };
 
-  const handleAddToWhishList = (product: { id: number; title: string; image: string; category: string; price: number; quantity: number; total: number }) => {
+  const handleAddToWhishList = (product: { id: number; title: string; image: string; category: string; price: number;  }) => {
     addWhishListItem(product);
     toast.success("Item added to whishlist ❤");
   };
@@ -24,7 +24,7 @@ const Cart = () => {
     const existingCartItemIndex = cartItems.findIndex((item: { id: number }) => item.id === id);
     if (existingCartItemIndex !== -1) {
       if (quantity <= 0) {
-        removeCartItem({ id });
+        removeCartItem(id );
       } else {
         const updatedCartItems = [...cartItems];
         updatedCartItems[existingCartItemIndex].quantity = quantity;
@@ -63,7 +63,7 @@ const Cart = () => {
             </div>
           </div>
           <div className="list py-6 px-14 sm:px-0 space-y-6">
-            {cartItems.map((item: { id: number; title: string; image: string; category: string; price: number; quantity: number; total: number }, idx: number) => (
+            {cartItems.map((item, idx: number) => (
               <div key={idx} className="product bg-neutral-100 flex flex-col sm:flex-row justify-evenly items-center gap-1 lg:gap-8 border-y border-gray-200 py-2 rounded-xl">
                 <img src={item.image} className="bg-gray-100 w-44 max-w-11/12 h-44 object-center rounded-xl" alt={item.title} />
                 <div className="details flex flex-col sm:gap-20">

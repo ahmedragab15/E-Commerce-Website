@@ -1,22 +1,28 @@
 import { ChevronRight, CircleCheckBig, Facebook, Instagram, ShoppingCart, Star, Twitter } from "lucide-react";
-import { useContext, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { ProductList } from "../data";
 import { IProduct } from "../interfaces";
-import { CartContext } from "../context/CartContext";
 import toast from "react-hot-toast";
 import { Helmet } from "react-helmet";
 import NotFound from "./NotFound";
 import { generateSlug } from "../utils";
+import { useCart } from "../Hooks/useCart";
 
 const ProductDetails = () => {
   const { slug } = useParams();
   const [product, setProduct] = useState<IProduct | undefined>(undefined);
 
-  const { addCartItem } = useContext(CartContext);
+  const { addCartItem } = useCart();
 
   const handleAddToCart = () => {
-    addCartItem(product);
+      if (!product) return;
+
+      const cartItem = {
+        ...product,
+        quantity: 1,
+      };
+    addCartItem(cartItem);
     toast.success("Item added to cart");
   };
 
