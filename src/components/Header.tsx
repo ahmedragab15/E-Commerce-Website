@@ -4,20 +4,19 @@ import { CircleHelp, Heart, Search, ShoppingCart } from "lucide-react";
 import Images from "./StaticImages";
 import { useEffect, useState } from "react";
 import PageTransition from "./PageTransition";
-import { useContext } from "react";
-import { CartContext } from "../context/CartContext";
-import { WhishListContext } from "../context/WhishlistContext";
 import { ProductList } from "../data";
 import { IProduct } from "../interfaces";
 import { generateSlug } from "../utils";
+import { useCart } from "../Hooks/useCart";
+import { useWhishList } from "../Hooks/useWishList";
 
 const Header = () => {
   const [openSideNav, setOpenSideNav] = useState(false);
   const [isAnimating, setIsAnimating] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
   const [filteredResults, setFilteredResults] = useState<IProduct[]>([]);
-  const { cartItems } = useContext(CartContext);
-  const { whishListItems } = useContext(WhishListContext);
+  const { cartItems } = useCart();
+  const { whishListItems } = useWhishList();
   const navigate = useNavigate();
 
   const transitionHandler = () => {
@@ -49,7 +48,7 @@ const Header = () => {
     <>
       <header className="fixed top-0 right-0 left-0 bg-orange-400 lg:py-5 px-8 flex flex-col justify-evenly z-[999] shadow-sm space-y-3">
         <div className="top-nav flex justify-between items-center py-1 lg:py-0 relative">
-          <span className="hidden lg:block">Selle easily on our store</span>
+          <span className="hidden lg:block">Sell easily on our store</span>
           <nav className={`fixed lg:static z-50 top-0 ${openSideNav ? "right-0" : "-right-full"} bottom-0 w-2/4 duration-700 lg:w-auto bg-orange-400 shadow-black shadow-sm lg:shadow-none p-5 lg:p-0 lg:bg-transparent flex items-center justify-center`}>
             <ul className="nav-items block lg:flex space-y-8 lg:space-y-0 lg:space-x-10">
               <li>
@@ -155,25 +154,19 @@ const Header = () => {
           </div>
           <div className="nav-search flex flex-row gap-2 lg:flex-1/3 order-2 lg:order-1 ">
             <div className="search-box bg-white flex items-center p-3 space-x-5 rounded-md  w-full">
-
               <Search className="border-none outline-none cursor-pointer hover:scale-110 duration-200" size={30} />
               <input type="text" className="border-none outline-none w-full h-full" placeholder="Look for anything you want" value={searchQuery} onChange={(e) => setSearchQuery(e.target.value)} onKeyUp={(e) => e.key === "Enter" && handleSearch()} />
             </div>
             {filteredResults.length > 0 && (
               <div className="suggestions bg-white absolute top-full left-0 right-0 max-h-60 overflow-auto border rounded-md shadow-lg z-50">
                 {filteredResults.map((product) => (
-                  <Link
-                    key={product.id}
-                    to={`/product/${generateSlug(product.title)}`}
-                    className="suggestion-item p-2 hover:bg-gray-200 cursor-pointer block w-full h-10"
-                    onClick={() => setSearchQuery("")}
-                  >
+                  <Link key={product.id} to={`/product/${generateSlug(product.title)}`} className="suggestion-item p-2 hover:bg-gray-200 cursor-pointer block w-full h-10" onClick={() => setSearchQuery("")}>
                     {product.title}
                   </Link>
                 ))}
               </div>
             )}
-            <SquiredButton className="rounded-md bg-white hover:bg-gray-100 border-none outline-none py-3 px-10 w-fit mx-auto text-md font-semibold " onClick={handleSearch}>
+            <SquiredButton className="rounded-md bg-white hover:bg-gray-100 border-none outline-none py-3 px-10 w-fit mx-auto text-md font-semibold  active:scale-95" onClick={handleSearch}>
               Search
             </SquiredButton>
           </div>
@@ -196,7 +189,7 @@ const Header = () => {
               }}
             >
               <ShoppingCart size={33} className="cursor-pointer hover:scale-110 duration-200" />
-              <span className="cart-count absolute top-0 right-0 bg-red-500 rounded-full pointer-events-none w-5 h-5 flex justify-center items-center">{cartItems?.length}</span>
+              <span className="cart-count absolute top-0 right-0 bg-red-500 rounded-full pointer-events-none w-5 h-5 flex justify-center items-center">{cartItems.length}</span>
             </Link>
             <Link
               to="/wishlist"
@@ -207,7 +200,7 @@ const Header = () => {
               }}
             >
               <Heart size={33} className="cursor-pointer hover:scale-110 duration-200" />
-              <span className="cart-count absolute top-0 right-0 bg-red-500 rounded-full pointer-events-none w-5 h-5 flex justify-center items-center">{whishListItems?.length}</span>
+              <span className="cart-count absolute top-0 right-0 bg-red-500 rounded-full pointer-events-none w-5 h-5 flex justify-center items-center">{whishListItems.length}</span>
             </Link>
           </div>
         </div>

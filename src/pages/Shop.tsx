@@ -5,8 +5,9 @@ import Pagination from "../components/UI/Pagination";
 import { ProductList } from "../data";
 import { BigBanner, VerticalBanner } from "../components/UI/Banner";
 import Images from "../components/StaticImages";
-import { useCallback, useEffect, useMemo, useState } from "react";
+import { Suspense, useCallback, useEffect, useMemo, useState } from "react";
 import { useLocation } from "react-router-dom";
+import ProductCardSkeleton from "../components/ProductCardSkeleton";
 
 const PRODUCTS_PER_PAGE = 16;
 
@@ -29,26 +30,29 @@ const Shop = () => {
     setCurrentPage(1);
   }, []);
 
-useEffect(() => {
-  if (defaultCategory) {
-    setSelectedCategories([defaultCategory]);
-  }
-}, [defaultCategory]);
+  useEffect(() => {
+    if (defaultCategory) {
+      setSelectedCategories([defaultCategory]);
+    }
+  }, [defaultCategory]);
 
-useEffect(() => {
-  setFilteredProducts(selectedCategories.length === 0 ? ProductList : ProductList.filter((product) => selectedCategories.includes(product.category)));
-}, [selectedCategories]);
-
+  useEffect(() => {
+    setFilteredProducts(selectedCategories.length === 0 ? ProductList : ProductList.filter((product) => selectedCategories.includes(product.category)));
+  }, [selectedCategories]);
 
   const totalPages = Math.ceil(filteredProducts.length / PRODUCTS_PER_PAGE);
 
-    const paginatedProducts = useMemo(() => {
-      const startIndex = (currentPage - 1) * PRODUCTS_PER_PAGE;
-      return filteredProducts.slice(startIndex, startIndex + PRODUCTS_PER_PAGE);
-    }, [filteredProducts, currentPage]);
+  const paginatedProducts = useMemo(() => {
+    const startIndex = (currentPage - 1) * PRODUCTS_PER_PAGE;
+    return filteredProducts.slice(startIndex, startIndex + PRODUCTS_PER_PAGE);
+  }, [filteredProducts, currentPage]);
 
   const renderProducts = useMemo(() => {
-    return paginatedProducts.map((product) => <ProductCard key={product.id} id={product.id} title={product.title} image={product.image} category={product.category} price={product.price} discountPercentage={product.discountPercentage} rating={product.rating} product={product} />);
+    return paginatedProducts.map((product) => (
+      <Suspense fallback={<ProductCardSkeleton />}>
+        <ProductCard key={product.id} id={product.id} title={product.title} image={product.image} category={product.category} price={product.price} discountPercentage={product.discountPercentage} rating={product.rating} product={product} />{" "}
+      </Suspense>
+    ));
   }, [paginatedProducts]);
 
   return (
@@ -58,7 +62,7 @@ useEffect(() => {
         <meta name="description" content="Shop electronics, fashion, and more at unbeatable prices. Fast shipping & secure checkout!" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="robots" content="index, follow" />
-        <meta name="keywords" content="online shopping, electronics, fashion, home, e-commerce, buy online, deals, [Your Niche]" />
+        <meta name="keywords" content="online shopping, electronics, fashion, home, e-commerce, buy online, deals" />
         <meta name="author" content="Ahmed Store" />
         <meta property="og:title" content="Ahmed Store - Online Store" />
         <meta property="og:description" content="Top deals on gadgets, clothes, and more!" />

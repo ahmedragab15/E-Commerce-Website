@@ -1,24 +1,30 @@
 import { SwiperSlide } from "swiper/react";
 import CategoryAside from "../components/CategoryAside";
 import Images from "../components/StaticImages";
-import ProductCard from "../components/ProductCard";
 import ProductsContainer from "../components/ProductsContainer";
 import { SliderRight, SliderLeft, HeroSlider } from "../components/swiper/Slider";
 import { ProductList } from "../data";
 import { Helmet } from "react-helmet";
 import { BigBanner, SmallBanner } from "../components/UI/Banner";
 import { Link } from "react-router-dom";
+import { lazy, Suspense } from "react";
+import ProductCardSkeleton from "../components/ProductCardSkeleton";
+const ProductCard = lazy(() => import("../components/ProductCard"));
 
 //*  Render   */
 const renderProducts = ProductList.map((product) => (
-  <SwiperSlide>
-    <ProductCard id={product.id} key={product.id} title={product.title} image={product.image} category={product.category} price={product.price} discountPercentage={product.discountPercentage} rating={product.rating} product={product} />
+  <SwiperSlide key={product.id}>
+    <Suspense fallback={<ProductCardSkeleton/>}>
+      <ProductCard id={product.id} title={product.title} image={product.image} category={product.category} price={product.price} discountPercentage={product.discountPercentage} rating={product.rating} product={product} />
+    </Suspense>
   </SwiperSlide>
 ));
 
 const renderProducts2 = ProductList.map((product) => (
-  <SwiperSlide>
-    <ProductCard id={product.id} key={product.id} title={product.title} image={product.image} category={product.category} price={product.price} discountPercentage={product.discountPercentage} rating={product.rating} product={product} imageBGColor="bg-gray-100" productCardBGColor="bg-white" />
+  <SwiperSlide key={product.id}>
+    <Suspense fallback={<ProductCardSkeleton />}>
+      <ProductCard id={product.id} title={product.title} image={product.image} category={product.category} price={product.price} discountPercentage={product.discountPercentage} rating={product.rating} product={product} imageBGColor="bg-gray-100" productCardBGColor="bg-white" />
+    </Suspense>
   </SwiperSlide>
 ));
 
@@ -30,7 +36,7 @@ const Home = () => {
         <meta name="description" content="Shop electronics, fashion, and more at unbeatable prices. Fast shipping & secure checkout!" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="robots" content="index, follow" />
-        <meta name="keywords" content="online shopping, electronics, fashion, home, e-commerce, buy online, deals, [Your Niche]" />
+        <meta name="keywords" content="online shopping, electronics, fashion, home, e-commerce, buy online, deals" />
         <meta name="author" content="Ahmed Store" />
         <meta property="og:title" content="Ahmed Store - Online Store" />
         <meta property="og:description" content="Top deals on gadgets, clothes, and more!" />
@@ -72,30 +78,31 @@ const Home = () => {
           </div>
         </section>
         <ProductsContainer containerTitle="Top Selling">
-          <SliderRight>{renderProducts.slice(40)}</SliderRight>
+          <SliderRight>{renderProducts.slice(40, 50)}</SliderRight>
         </ProductsContainer>
+
         <ProductsContainer containerTitle="Daily Deal" productsBGColor="bg-gray-100">
-          <SliderLeft>{renderProducts2.slice(26)}</SliderLeft>
+          <SliderLeft>{renderProducts2.slice(26, 35)}</SliderLeft>
         </ProductsContainer>
+
         <BigBanner src={Images.banners.bb1} />
 
         <ProductsContainer containerTitle="Top Shops">
-          <SliderRight>{renderProducts.slice(50)}</SliderRight>
+          <SliderRight>{renderProducts.slice(50,60)}</SliderRight>
         </ProductsContainer>
         <ProductsContainer classname="flex-wrap" containerTitle="General Products" productsBGColor="bg-gray-100">
-          <SliderLeft>{renderProducts2.slice(4)}</SliderLeft>
-          <SliderRight>{renderProducts2.slice(35)}</SliderRight>
-          <SliderLeft>{renderProducts2.slice(55)}</SliderLeft>
+          <SliderLeft>{renderProducts2.slice(4, 15)}</SliderLeft>
+          <SliderRight>{renderProducts2.slice(35, 45)}</SliderRight>
+          <SliderLeft>{renderProducts2.slice(55, 65)}</SliderLeft>
         </ProductsContainer>
-        <BigBanner src={Images.banners.bb2} />
         <BigBanner src={Images.banners.bb3} />
         <ProductsContainer containerTitle="Last Seen" classname="flex-wrap">
-          <SliderRight>{renderProducts.slice(4)}</SliderRight>
-          <SliderLeft>{renderProducts.slice(55)}</SliderLeft>
+          <SliderRight>{renderProducts.slice(4, 15)}</SliderRight>
+          <SliderLeft>{renderProducts.slice(65, 75)}</SliderLeft>
         </ProductsContainer>
         <BigBanner src={Images.banners.bb4} />
         <ProductsContainer containerTitle="Top Checked product">
-          <SliderRight>{renderProducts.slice(38)}</SliderRight>
+          <SliderRight>{renderProducts.slice(38, 48)}</SliderRight>
         </ProductsContainer>
       </main>
     </>

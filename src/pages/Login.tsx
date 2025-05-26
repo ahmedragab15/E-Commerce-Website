@@ -17,7 +17,7 @@ function Login() {
               <input className="bg-zinc-100 border-0 my-2 py-2.5 px-3.5 text-sm rounded-lg w-full outline-0" type="text" placeholder="Username" />
               <input className="bg-zinc-100 border-0 my-2 py-2.5 px-3.5 text-sm rounded-lg w-full outline-0" type="email" placeholder="Email" />
               <input className="bg-zinc-100 border-0 my-2 py-2.5 px-3.5 text-sm rounded-lg w-full outline-0" type="password" placeholder="Password" />
-              <button className="bg-orange-400 text-white text-sm py-2.5 px-11 border border-transparent rounded-lg font-semibold uppercase mt-2.5 cursor-pointer hover:bg-orange-500">Sign Up</button>
+              <button className="bg-orange-400 text-white text-sm py-2.5 px-11 border border-transparent rounded-lg font-semibold uppercase mt-2.5 cursor-pointer hover:bg-orange-500  active:scale-95">Sign Up</button>
               <p className="text-sm font-medium  leading-5 my-5">or sign up with</p>
               <div className="social-icons flex">
                 <Github className=" text-neutral-600 border border-orange-400 rounded-full justify-center items-center p-2 mx-1.5 duration-300 cursor-pointer hover:bg-orange-400 hover:text-white" size={40} />
@@ -35,7 +35,7 @@ function Login() {
               <a className="text-zinc-800 text-sm no-underline mt-3.5 mb-2.5" href="#">
                 Forget Password?
               </a>
-              <button className="bg-orange-400 text-white text-sm py-2.5 px-11 border border-transparent rounded-lg font-semibold uppercase mt-2.5 cursor-pointer hover:bg-orange-500">Sign In</button>
+              <button className="bg-orange-400 text-white text-sm py-2.5 px-11 border border-transparent rounded-lg font-semibold uppercase mt-2.5 cursor-pointer hover:bg-orange-500  active:scale-95">Sign In</button>
               <p className="text-sm font-medium leading-5 my-5">or sign in with</p>
               <div className="social-icons flex">
                 <Github className=" text-neutral-600 border border-orange-400 rounded-full justify-center items-center p-2 mx-1.5 duration-300 cursor-pointer hover:bg-orange-400 hover:text-white" size={40} />
@@ -53,14 +53,14 @@ function Login() {
                   Jumia
                 </h1>
                 <p className="text-sm font-medium  leading-5 my-5">Sign in With Email &amp; Passowrd</p>
-                <button className="hiddenn bg-transparent text-white text-sm py-2.5 px-11 border border-white rounded-lg font-semibold uppercase mt-2.5 cursor-pointer hover:bg-white hover:text-orange-400" id="login" onClick={() => setIsActive(!isActive)}>
+                <button className="hiddenn bg-transparent text-white text-sm py-2.5 px-11 border border-white rounded-lg font-semibold uppercase mt-2.5 cursor-pointer hover:bg-white hover:text-orange-400  active:scale-95" id="login" onClick={() => setIsActive(!isActive)}>
                   Sign In
                 </button>
               </div>
               <div className="toggle-panel toggle-right absolute top-0 right-0 w-1/2 h-full flex flex-col justify-center items-center px-7 text-center translate-x-0 duration-500 ease-in-out">
                 <h1 className="text-2xl font-semibold mb-2">Welcome Back</h1>
                 <p className="text-sm font-medium  leading-5 my-5">No account yet? Sign up</p>
-                <button className="hiddenn bg-transparent text-white text-sm py-2.5 px-11 border border-white rounded-lg font-semibold uppercase mt-2.5 cursor-pointer hover:bg-white hover:text-orange-400" id="register" onClick={() => setIsActive(!isActive)}>
+                <button className="hiddenn bg-transparent text-white text-sm py-2.5 px-11 border border-white rounded-lg font-semibold uppercase mt-2.5 cursor-pointer hover:bg-white hover:text-orange-400  active:scale-95" id="register" onClick={() => setIsActive(!isActive)}>
                   Sign Up
                 </button>
               </div>

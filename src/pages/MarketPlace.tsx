@@ -6,6 +6,8 @@ import { SliderLeft, SliderRight } from "../components/swiper/Slider";
 import { Helmet } from "react-helmet";
 import Images from "../components/StaticImages";
 import { Link } from "react-router-dom";
+import { Suspense } from "react";
+import ProductCardSkeleton from "../components/ProductCardSkeleton";
 
 const MarketPlace = () => {
   const categories = [...new Set(ProductList.map((product) => product.category))];
@@ -19,7 +21,7 @@ const MarketPlace = () => {
         <meta name="description" content="Shop electronics, fashion, and more at unbeatable prices. Fast shipping & secure checkout!" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="robots" content="index, follow" />
-        <meta name="keywords" content="online shopping, electronics, fashion, home, e-commerce, buy online, deals, [Your Niche]" />
+        <meta name="keywords" content="online shopping, electronics, fashion, home, e-commerce, buy online, deals" />
         <meta name="author" content="Ahmed Store" />
         <meta property="og:title" content="Ahmed Store - Online Store" />
         <meta property="og:description" content="Top deals on gadgets, clothes, and more!" />
@@ -33,7 +35,9 @@ const MarketPlace = () => {
             const categoryProducts = ProductList.filter((product) => product.category === category);
             const sliderItems = categoryProducts.map((product) => (
               <SwiperSlide key={product.id}>
-                <ProductCard id={product.id} title={product.title} image={product.image} category={product.category} price={product.price} discountPercentage={product.discountPercentage} rating={product.rating} product={product} />
+                <Suspense fallback={<ProductCardSkeleton />}>
+                  <ProductCard id={product.id} title={product.title} image={product.image} category={product.category} price={product.price} discountPercentage={product.discountPercentage} rating={product.rating} product={product} />
+                </Suspense>
               </SwiperSlide>
             ));
 

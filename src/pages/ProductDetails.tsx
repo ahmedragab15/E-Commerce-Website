@@ -41,7 +41,7 @@ const ProductDetails = () => {
         <meta name="description" content="Shop electronics, fashion, and more at unbeatable prices. Fast shipping & secure checkout!" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="robots" content="index, follow" />
-        <meta name="keywords" content="online shopping, electronics, fashion, home, e-commerce, buy online, deals, [Your Niche]" />
+        <meta name="keywords" content="online shopping, electronics, fashion, home, e-commerce, buy online, deals" />
         <meta name="author" content="Ahmed Store" />
         <meta property="og:title" content="Ahmed Store - Online Store" />
         <meta property="og:description" content="Top deals on gadgets, clothes, and more!" />

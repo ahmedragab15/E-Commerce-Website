@@ -1,4 +1,4 @@
-import { ButtonHTMLAttributes, ReactNode } from "react";
+import { ButtonHTMLAttributes, memo, ReactNode } from "react";
 
 interface Iprops extends ButtonHTMLAttributes<HTMLButtonElement> {
   children?: ReactNode;
@@ -14,10 +14,12 @@ export const SquiredButton = ({ children, className,...rest }: Iprops) => {
 };
 
 
-export const CartButton = ({...rest}: Iprops) => {
+const CartButtonComponent = ({ ...rest }: Iprops) => {
   return (
     <button className="font-medium cursor-pointer bg-gradient-to-r from-orange-300 from-0% via-orange-100 via-50% to-orange-300 to-100% py-1 px-2  rounded-sm" {...rest}>
       Add to cart
     </button>
   );
 };
+
+export const CartButton = memo(CartButtonComponent);
