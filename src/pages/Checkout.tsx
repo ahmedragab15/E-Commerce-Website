@@ -2,15 +2,15 @@ import { Trash2 } from "lucide-react";
 import { Link } from "react-router-dom";
 import Images from "../components/StaticImages";
 import { Helmet } from "react-helmet";
-import { useContext } from "react";
-import { CartContext } from "../context/CartContext";
 import toast from "react-hot-toast";
+import { useCart } from "../Hooks/useCart";
 
 const Checkout = () => {
-  const { cartItems, removeCartItem, setCartItems } = useContext(CartContext);
+  const { cartItems, removeCartItem, setCartItems } = useCart();
+
 
   const handleRemoveFromCart = (id: number) => {
-    removeCartItem({ id });
+    removeCartItem( id );
     toast.success("Item removed from cart");
   };
 
@@ -19,7 +19,7 @@ const Checkout = () => {
     const existingCartItemIndex = cartItems.findIndex((item: { id: number }) => item.id === id);
     if (existingCartItemIndex !== -1) {
       if (quantity <= 0) {
-        removeCartItem({ id });
+        removeCartItem(id);
       } else {
         const updatedCartItems = [...cartItems];
         updatedCartItems[existingCartItemIndex].quantity = quantity;
@@ -49,7 +49,7 @@ const Checkout = () => {
           </div>
           <div className="wrapper flex flex-col lg:flex-row justify-between gap-4">
             <div className="cart-items space-y-8 lg:w-3/5 ">
-              {cartItems.map((item: { id: number; title: string; image: string; description: string; category: string; price: number; quantity: number; total: number }, idx: number) => (
+              {cartItems.map((item, idx) => (
                 <div key={idx} className="item w-fit mx-auto sm:w-auto bg-white flex flex-col sm:flex-row justify-evenly items-center gap-4 py-4 px-6 rounded-xl shadow-lg">
                   <img src={item.image} className="bg-gray-100 w-20 lg:w-30 h-30 object-fit" alt={item.title} />
                   <div>
