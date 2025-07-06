@@ -6,7 +6,7 @@ import { Link } from "react-router-dom";
 import { generateSlug } from "../utils";
 import { useCart } from "../Hooks/useCart";
 import { useWhishList } from "../Hooks/useWishList";
-import { memo, useCallback, useState } from "react";
+import { memo, useCallback } from "react";
 
 interface Iprops extends IProduct {
   product: IProduct;
@@ -17,7 +17,6 @@ interface Iprops extends IProduct {
 const ProductCard = ({ id, image, title, category, price, discountPercentage, imageBGColor = "bg-white", productCardBGColor = "bg-gray-100", rating, product }: Iprops) => {
   const { addCartItem } = useCart();
   const { addWhishListItem } = useWhishList();
-  const [isLoading, setIsLoading] = useState(true);
 
   const handleAddToCart = useCallback(() => {
     addCartItem({
@@ -44,8 +43,7 @@ const ProductCard = ({ id, image, title, category, price, discountPercentage, im
       <div className={`product-card w-2xs drop-shadow-lg ${productCardBGColor} p-4 pb-2 rounded-lg`} key={id}>
         <Link to={`/product/${generateSlug(product.title)}`}>
           <div className="img-box">
-            {isLoading && <div className="spinner border-4 border-gray-300 border-t-orange-500 rounded-full w-10 h-10 animate-spin absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-3/3 " />}
-            <img src={image} alt={title} loading="lazy" className={`${imageBGColor} rounded-lg w-full h-58 object-fit cursor-pointer transition-opacity duration-500 ${isLoading ? "opacity-0" : "opacity-100"}`} onLoad={() => setIsLoading(false)}/>
+            <img src={image} alt={title} className={`${imageBGColor} rounded-lg w-full h-58 object-fit cursor-pointer transition-opacity duration-500 $`} />
           </div>
         </Link>
         <div className="product-details">
